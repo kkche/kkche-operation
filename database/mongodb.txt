@@ -26,13 +26,12 @@ mongo
 > use <db_name>
 > db.addUser("<username>", "<password>")
 > show dbs
-> use <some_db>
+> use <db_name>
 > db.dropDatabase()
 > show collections
-> db.<some_collection>.drop()
+> db.<collection_name>.drop()
 > db.fs.chunks.count()
 > db.fs.chunks.findOne()
-> db.fs.files.find({_id:ObjectId("4f47359c43f1e51991000002")})
-> db.fs.chunks.find({files_id:ObjectId("4f47359c43f1e51991000002")})
-> db["4fe2dcc148e20d9ca8b5e436.files"].find()
+> db.fs.files.find({_id:ObjectId("<oid>")})
+> db.fs.chunks.find({files_id:ObjectId("<oid>")})
 
