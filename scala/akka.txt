@@ -1,0 +1,13 @@
+
+cd /opt
+sudo wget http://downloads.typesafe.com/akka/akka-2.3.2.zip
+sudo unzip akka-2.3.2.zip
+sudo chown -R `whoami`:root /opt/akka-2.3.2/
+sudo chmod -R u+x /opt/akka-2.3.2/bin/
+
+sudo vi /etc/profile.d/scala.sh
+export AKKA_HOME=/opt/akka-2.3.2
+export PATH=$AKKA_HOME/bin:$PATH
+
+source /etc/profile.d/scala.sh
+

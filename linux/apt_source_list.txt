@@ -1,0 +1,67 @@
+
+#offcial
+deb http://cn.archive.ubuntu.com/ubuntu/ precise main restricted
+deb-src http://cn.archive.ubuntu.com/ubuntu/ precise main restricted
+
+deb http://cn.archive.ubuntu.com/ubuntu/ precise-updates main restricted
+deb-src http://cn.archive.ubuntu.com/ubuntu/ precise-updates main restricted
+
+deb http://cn.archive.ubuntu.com/ubuntu/ precise universe
+deb-src http://cn.archive.ubuntu.com/ubuntu/ precise universe
+deb http://cn.archive.ubuntu.com/ubuntu/ precise-updates universe
+deb-src http://cn.archive.ubuntu.com/ubuntu/ precise-updates universe
+
+deb http://cn.archive.ubuntu.com/ubuntu/ precise multiverse
+deb-src http://cn.archive.ubuntu.com/ubuntu/ precise multiverse
+deb http://cn.archive.ubuntu.com/ubuntu/ precise-updates multiverse
+deb-src http://cn.archive.ubuntu.com/ubuntu/ precise-updates multiverse
+
+deb http://cn.archive.ubuntu.com/ubuntu/ precise-backports main restricted universe multiverse
+deb-src http://cn.archive.ubuntu.com/ubuntu/ precise-backports main restricted universe multiverse
+
+deb http://security.ubuntu.com/ubuntu precise-security main restricted
+deb-src http://security.ubuntu.com/ubuntu precise-security main restricted
+deb http://security.ubuntu.com/ubuntu precise-security universe
+deb-src http://security.ubuntu.com/ubuntu precise-security universe
+deb http://security.ubuntu.com/ubuntu precise-security multiverse
+deb-src http://security.ubuntu.com/ubuntu precise-security multiverse
+
+deb http://archive.canonical.com/ubuntu precise partner
+deb-src http://archive.canonical.com/ubuntu precise partner
+
+deb http://extras.ubuntu.com/ubuntu precise main
+deb-src http://extras.ubuntu.com/ubuntu precise main
+
+#163
+deb http://mirrors.163.com/ubuntu/ precise main restricted
+deb-src http://mirrors.163.com/ubuntu/ precise main restricted
+
+deb http://mirrors.163.com/ubuntu/ precise-updates main restricted
+deb-src http://mirrors.163.com/ubuntu/ precise-updates main restricted
+
+deb http://mirrors.163.com/ubuntu/ precise universe
+deb-src http://mirrors.163.com/ubuntu/ precise universe
+deb http://mirrors.163.com/ubuntu/ precise-updates universe
+deb-src http://mirrors.163.com/ubuntu/ precise-updates universe
+
+deb http://mirrors.163.com/ubuntu/ precise multiverse
+deb-src http://mirrors.163.com/ubuntu/ precise multiverse
+deb http://mirrors.163.com/ubuntu/ precise-updates multiverse
+deb-src http://mirrors.163.com/ubuntu/ precise-updates multiverse
+
+deb http://mirrors.163.com/ubuntu/ precise-backports main restricted universe multiverse
+deb-src http://mirrors.163.com/ubuntu/ precise-backports main restricted universe multiverse
+
+deb http://mirrors.163.com/ubuntu/ precise-security main restricted
+deb-src http://mirrors.163.com/ubuntu/ precise-security main restricted
+deb http://mirrors.163.com/ubuntu/ precise-security universe
+deb-src http://mirrors.163.com/ubuntu/ precise-security universe
+deb http://mirrors.163.com/ubuntu/ precise-security multiverse
+deb-src http://mirrors.163.com/ubuntu/ precise-security multiverse
+
+deb http://archive.canonical.com/ubuntu precise partner
+deb-src http://archive.canonical.com/ubuntu precise partner
+
+deb http://extras.ubuntu.com/ubuntu precise main
+deb-src http://extras.ubuntu.com/ubuntu precise main
+

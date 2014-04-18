@@ -1,0 +1,45 @@
+
+wget http://www.redmine.org/releases/redmine-2.5.0.tar.gz
+tar xfzv redmine-2.5.0.tar.gz
+cd redmine-2.5.0
+
+mysql 
+> create database redmine character set utf8;
+> create user 'redmine'@'localhost' identified by '<password>';
+> grant all privileges on redmine.* to 'redmine'@'localhost';
+> flush privileges;
+
+cp config/database.yml.example config/database.yml
+vi config/database.yml
+
+sudo apt-get install imagemagick libmagickwand-dev
+
+vi Gemfile
+source 'http://ruby.taobao.org'
+
+gem install bundler
+bundle install --without development test
+
+rake generate_secret_token
+
+RAILS_ENV=production rake db:migrate
+RAILS_ENV=production rake redmine:load_default_data
+
+mkdir -p tmp tmp/pdf public/plugin_assets
+sudo chown -R redmine:redmine files log tmp public/plugin_assets
+sudo chmod -R 755 files log tmp public/plugin_assets
+
+ruby script/rails server webrick -e production
+
+http://localhost:3000/
+login: admin
+password: admin
+
+cp config/configuration.yml.example config/configuration.yml
+
+cp config/additional_environment.rb.example config/additional_environment.rb
+
+mysqldump -u <username> -p<password> <redmine_database> | gzip > /path/to/backup/db/redmine_`date +%y_%m_%d`.gz
+
+rsync -a /path/to/redmine/files /path/to/backup/files
+

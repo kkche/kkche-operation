@@ -1,0 +1,90 @@
+
+sudo mkdir -p /opt/logstash-1.2.2/conf
+sudo chown -R `whoami`:root /opt/logstash-1.2.2
+cd /opt/logstash-1.2.2
+sudo wget http://192.168.88.100/programming/operation/logstash/release/logstash-1.2.2-flatjar.jar
+
+java -jar logstash-1.2.2-flatjar.jar agent -f conf/some.conf -- web
+
+http://localhost:9200/_search?pretty=1&q=*
+http://localhost:9292/
+
+sudo vi conf/apache-elasticsearch.conf
+input {
+  file {
+    type => "apache"
+    path => [ "/tmp/apache_log.2" ]
+  }
+}
+filter {
+  grok {
+    type => "apache"
+    pattern => "%{COMBINEDAPACHELOG}"
+  }
+  date {
+    type => "apache"
+    match => [ "timestamp", "dd/MMM/yyyy:HH:mm:ss Z" ]
+  }
+}
+output {
+  elasticsearch {
+    embedded => true
+  }
+}
+
+sudo vi conf/shipper.conf
+input {
+  stdin {
+    type => "example"
+  }
+}
+output {
+  stdout { 
+    codec => rubydebug 
+  }
+  redis { 
+    host => "<redis-host>" 
+    data_type => "list" 
+    key => "logstash"
+  }
+}
+
+sudo vi conf/indexer.conf
+input {
+  redis {
+    host => "<redis-host>"
+    data_type => "list"
+    key => "logstash"
+    codec => json
+  }
+}
+output {
+  stdout { 
+    debug => true
+    debug_format => "json"
+  }
+  elasticsearch {
+    host => "<es-host>"
+  }
+}
+
+sudo vi conf/apache-metrics.conf
+input {
+  file { 
+    path => "/var/log/apache2/access.log" 
+    type => "apache-access"
+  }
+}
+filter {
+  grok { 
+    type => "apache-access"
+    pattern => "%{COMBINEDAPACHELOG}" 
+  }
+}
+output {
+  statsd {
+    increment => "apache.response.%{response}"
+    count => [ "apache.bytes", "%{bytes}" ]
+  }
+}
+

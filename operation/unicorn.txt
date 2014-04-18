@@ -1,0 +1,3 @@
+
+cd ~/workspace/jishufan
+unicorn_rails -c config/unicorn.rb

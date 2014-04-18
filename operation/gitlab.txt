@@ -1,0 +1,145 @@
+
+https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/install/installation.md
+
+sudo apt-get install -y vim
+sudo update-alternatives --set editor /usr/bin/vim.basic
+
+sudo apt-get install -y curl openssh-server python-docutils
+
+sudo apt-get install -y build-essential zlib1g-dev libyaml-dev libssl-dev \
+libgdbm-dev libreadline-dev libncurses5-dev libffi-dev checkinstall \
+libxml2-dev libxslt-dev libcurl4-openssl-dev libicu-dev logrotate
+
+sudo apt-get install -y redis-server
+
+sudo apt-get remove git-core
+sudo apt-get install -y libcurl4-openssl-dev libexpat1-dev gettext libz-dev libssl-dev build-essential
+cd /tmp
+curl --progress https://git-core.googlecode.com/files/git-1.8.5.3.tar.gz | tar xz
+cd git-1.8.5.3/
+make prefix=/usr/local all
+sudo make prefix=/usr/local install
+
+sudo apt-get install -y postfix
+
+sudo apt-get remove ruby1.8
+mkdir /tmp/ruby && cd /tmp/ruby
+curl --progress ftp://ftp.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p353.tar.gz | tar xz
+cd ruby-2.0.0-p353
+./configure --disable-install-rdoc
+make
+sudo make install
+sudo gem install bundler --no-ri --no-rdoc
+
+sudo adduser --disabled-login --gecos 'GitLab' git
+
+cd /home/git
+sudo -u git -H git clone https://gitlab.com/gitlab-org/gitlab-shell.git -b v1.8.0
+cd gitlab-shell
+sudo -u git -H cp config.yml.example config.yml
+
+sudo -u git -H editor /home/git/gitlab-shell/config.yml
+gitlab_url: "http://<fqdn>/"
+
+sudo -u git -H ./bin/install
+
+sudo apt-get install -y mysql-server mysql-client libmysqlclient-dev
+sudo mysql_secure_installation
+mysql -u root -p
+> CREATE USER 'git'@'localhost' IDENTIFIED BY '$password';
+> CREATE DATABASE IF NOT EXISTS `gitlabhq_production` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`;
+> GRANT SELECT, LOCK TABLES, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER ON `gitlabhq_production`.* TO 'git'@'localhost';
+> \q
+
+sudo -u git -H mysql -u git -p -D gitlabhq_production
+mysql> \q
+
+cd /home/git
+sudo -u git -H git clone https://gitlab.com/gitlab-org/gitlab-ce.git -b 6-4-stable gitlab
+
+cd /home/git/gitlab
+sudo -u git -H cp config/gitlab.yml.example config/gitlab.yml
+
+sudo -u git -H editor /home/git/gitlab/config/gitlab.yml
+host: <fqdn>
+bin_path: /usr/local/bin/git
+
+sudo chown -R git log/
+sudo chown -R git tmp/
+sudo chmod -R u+rwX  log/
+sudo chmod -R u+rwX  tmp/
+sudo -u git -H mkdir /home/git/gitlab-satellites
+sudo -u git -H mkdir tmp/pids/
+sudo -u git -H mkdir tmp/sockets/
+sudo chmod -R u+rwX  tmp/pids/
+sudo chmod -R u+rwX  tmp/sockets/
+sudo -u git -H mkdir public/uploads
+sudo chmod -R u+rwX  public/uploads
+sudo -u git -H cp config/unicorn.rb.example config/unicorn.rb
+sudo -u git -H editor /home/git/gitlab/config/unicorn.rb
+sudo -u git -H cp config/initializers/rack_attack.rb.example config/initializers/rack_attack.rb
+sudo -u git -H git config --global user.name "GitLab"
+sudo -u git -H git config --global user.email "gitlab@localhost"
+sudo -u git -H git config --global core.autocrlf input
+
+sudo -u git cp config/database.yml.mysql config/database.yml
+sudo -u git -H editor /home/git/gitlab/config/database.yml
+#change password
+
+sudo -u git -H chmod o-rwx config/database.yml
+
+sudo -u git -H editor /home/git/gitlab/Gemfile
+sudo -u git -H editor /home/git/gitlab/Gemfile.lock
+source "http://ruby.taobao.org"
+
+cd /home/git/gitlab
+sudo -u git -H bundle install --deployment --without development test postgres aws
+sudo -u git -H bundle exec rake gitlab:setup RAILS_ENV=production
+
+sudo cp lib/support/init.d/gitlab /etc/init.d/gitlab
+sudo cp lib/support/init.d/gitlab.default.example /etc/default/gitlab
+
+sudo update-rc.d gitlab defaults 21
+
+sudo cp lib/support/logrotate/gitlab /etc/logrotate.d/gitlab
+
+sudo -u git -H bundle exec rake gitlab:env:info RAILS_ENV=production
+
+sudo service gitlab restart
+
+sudo -u git -H bundle exec rake assets:precompile RAILS_ENV=production
+
+sudo apt-get install -y nginx
+
+sudo cp lib/support/nginx/gitlab /etc/nginx/sites-available/gitlab
+sudo ln -s /etc/nginx/sites-available/gitlab /etc/nginx/sites-enabled/gitlab
+
+sudo editor /etc/nginx/sites-available/gitlab
+listen *:80;
+server_name <fqdn>;
+
+sudo service nginx restart
+
+sudo -u git -H bundle exec rake gitlab:check RAILS_ENV=production
+
+#username: admin@local.host
+#password: 5iveL!fe
+
+#subdomain
+sudo -u git -H editor /home/git/gitlab/config/application.rb
+config.relative_url_root = "/gitlab"
+
+sudo -u git -H editor /home/git/gitlab/config/gitlab.yml
+relative_url_root: /gitlab
+
+sudo -u git -H editor /home/git/gitlab/config/unicorn.rb
+ENV['RAILS_RELATIVE_URL_ROOT'] = "/gitlab"
+
+sudo -u git -H editor /home/git/gitlab-shell/config.yml
+gitlab_url: "http://<fqdn>/gitlab"
+
+cd /home/git/gitlab
+sudo -u git -H bundle exec rake assets:precompile RAILS_ENV=production
+sudo service gitlab restart
+sudo service nginx restart
+

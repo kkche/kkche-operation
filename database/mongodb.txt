@@ -1,0 +1,48 @@
+
+echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | \
+sudo tee /etc/apt/sources.list.d/mongodb.list
+
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10
+
+sudo apt-get update && sudo apt-get install mongodb-10gen
+
+sudo apt-get install git-core build-essential scons libboost-dev libboost-program-options-dev libboost-thread-dev libboost-filesystem-dev
+
+sudo vi /etc/mongodb.conf
+auth = true
+
+mongo
+> use admin
+> db.addUser("<username>", "<password>")
+> db.auth("<username>", "<password>")
+> db.system.users.find()
+> use <db_name>
+> db.addUser("<username>", "<password>")
+> show dbs
+> use <some_db>
+> db.dropDatabase()
+> show collections
+> db.<some_collection>.drop()
+> db.fs.chunks.count()
+> db.fs.chunks.findOne()
+> db.fs.files.find({_id:ObjectId("4f47359c43f1e51991000002")})
+> db.fs.chunks.find({files_id:ObjectId("4f47359c43f1e51991000002")})
+> db["4fe2dcc148e20d9ca8b5e436.files"].find()
+
+require 'mongo'
+@conn = Mongo::Connection.new("192.168.1.112", 27017)
+@db = @conn['sample']
+@coll = @db['users']
+@coll.remove
+100000.times do |i|
+@coll.insert({'name' => "user" + rand(100).to_s, 'age' => Random.rand(100)})
+end
+@coll.find.each { |doc| puts doc.inspect }
+@coll.count
+@coll.find.first
+{"_id"=>BSON::ObjectId('4f54508543f1e53f75000001'), "name"=>"user82", "score"=>3}
+
+netstat -tln
+
+sudo lsof -i:27017
+

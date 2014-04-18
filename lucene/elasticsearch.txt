@@ -1,0 +1,20 @@
+
+cd /tmp
+wget http://192.168.88.100/programming/lucene/release/elasticsearch-0.90.7.tar.gz
+tar xfz elasticsearch-0.90.7.tar.gz
+sudo mv elasticsearch-0.90.7 /opt
+sudo chown -R `whoami`:root /opt/elasticsearch-0.90.7
+
+sudo vi /etc/profile.d/elasticsearch.sh
+export ES_HOME=/opt/elasticsearch-0.90.7
+export PATH=$ES_HOME/bin:$PATH
+
+$ES_HOME/bin/elasticsearch
+
+http://<es-host>:9200/_status?pretty=true
+http://<es-host>:9200/_stats?pretty=true
+http://<es-host>:9200/_mapping?pretty=true
+http://<es-host>:9200/_search?pretty=true&size=100&&q=*
+
+ps aux | grep elasticsearch | awk '{print $2}' | xargs sudo kill -9
+
