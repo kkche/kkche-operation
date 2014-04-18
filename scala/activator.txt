@@ -2,11 +2,17 @@
 Akka and Spray
 https://github.com/eigengo/activator-akka-spray
 
+Hello Play Framework 2.3 (Scala Only)
+https://github.com/typesafehub/activator-hello-play-2_3-scala
+
 Test Patterns in Scala!
 https://github.com/eptx/activator-test-patterns-scala
 
 The Play Angular Seed Project
 https://github.com/typesafehub/angular-seed-play
+
+Spray and Websocket interfaces to actors
+https://github.com/cuali/SprayEasterEggs
 
 Actor per-request model with spray
 https://github.com/NET-A-PORTER/spray-actor-per-request
@@ -17,6 +23,12 @@ https://github.com/typesafehub/play-guice
 Play Framework with Backbone.js
 https://github.com/erdogany/hello-play-backbone
 
+Play + Java + Spring
+https://github.com/jamesward/play-java-spring
+
+Hello Akka!
+https://github.com/typesafehub/activator-hello-akka
+
 Activator Scalding
 https://github.com/deanwampler/activator-scalding
 
@@ -25,12 +37,6 @@ https://github.com/typesafehub/reactive-scales
 
 Reactive Stocks (Java 8)
 https://github.com/typesafehub/reactive-stocks-java8
-
-Hello Akka!
-https://github.com/typesafehub/activator-hello-akka
-
-Play + Java + Spring
-https://github.com/jamesward/play-java-spring
 
 Hello Scaloid!
 https://github.com/pocorall/activator-hello-scaloid
@@ -113,11 +119,11 @@ https://github.com/typesafehub/activator-akka-cluster-sharding-scala
 An introduction to sbt
 https://github.com/typesafehub/hello-sbt
 
-Play Cake Pattern (Scala)
-https://github.com/kaeawc/play-cake-pattern
-
 Reactive Maps
 https://github.com/typesafehub/ReactiveMaps
+
+Play Cake Pattern (Scala)
+https://github.com/kaeawc/play-cake-pattern
 
 Play Example Form
 https://github.com/jamesward/play-example-form
@@ -133,6 +139,9 @@ https://github.com/ouertani/akka-scala-spring
 
 Template template
 https://github.com/schaloner/activator-template-template
+
+CEP with Akka and Esper
+https://github.com/fsauer65/akka-esper-integration
 
 Akka Clustered PubSub with Scala!
 https://github.com/typesafehub/activator-akka-clustering
@@ -152,17 +161,20 @@ https://github.com/pulsation/slick-android-example
 Play Framework using Scalatest for testing and SubCut for configuration
 https://github.com/dickwall/activator-play-subcut
 
+Play (Scala) with play-yeoman
+https://github.com/tuplejump/activator-play-yeoman
+
 Play Reactive Mongo application with KnockoutJS frontend
 https://github.com/typesafehub/play-mongo-knockout
 
-Play (Scala) with play-yeoman
-https://github.com/tuplejump/activator-play-yeoman
+Play Akka Angular WebSocket
+https://github.com/gigiigig/play-akka-angular-websocket
 
 Hello Scala!
 https://github.com/tflander/activator-hello-scala
 
-Play Akka Angular WebSocket
-https://github.com/gigiigig/play-akka-angular-websocket
+Play with Squeryl
+https://github.com/jamesward/play2bars-squeryl
 
 Super Slick Play
 https://github.com/mkelland/activator-play-slick
@@ -176,14 +188,14 @@ https://github.com/adamw/macwire-activator
 Scaldi Play Example
 https://github.com/scaldi/scaldi-play-example
 
+A little phantom type sample
+https://github.com/dickwall/activator-scala-phantom
+
 Play Framework with AngularJS and RequireJS
 https://github.com/mariussoutier/play-angular-require-seed
 
 Slick Plain SQL Queries
 https://github.com/typesafehub/activator-slick-plainsql
-
-A little phantom type sample
-https://github.com/dickwall/activator-scala-phantom
 
 Akka IO with Spray Client
 https://github.com/eigengo/activator-spray-twitter

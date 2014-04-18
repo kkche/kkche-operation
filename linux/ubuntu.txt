@@ -46,8 +46,7 @@ sudo apt-get install flashplugin-installer
 
 sudo apt-get install git-core git-gui git-doc subversion subversion-tools
 
-sudo apt-get install rsync curl ssh openssh-server
-sudo apt-get install grsync
+sudo apt-get install ssh openssh-server
 
 sudo vi /etc/ssh/sshd_config
 ClientAliveInterval 120
@@ -63,6 +62,7 @@ ssh-copy-id <user>@<host>
 ssh-add
 tail -f /var/log/auth.log
 
+sudo apt-get install rsync grsync
 rsync --delete -azv /some/path/ /some/other/path/
 rsync --delete -vrltgoD -e ssh /some/path/ <user>@<host>:/some/path
  
