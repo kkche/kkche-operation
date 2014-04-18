@@ -63,7 +63,7 @@ ssh-add
 tail -f /var/log/auth.log
 
 sudo apt-get install rsync grsync
-rsync --delete -azv /some/path/ /some/other/path/
+rsync --delete -azv --exclude '.git' /some/path/ /some/other/path/
 rsync --delete -vrltgoD -e ssh /some/path/ <user>@<host>:/some/path
  
 sudo apt-get install x11vnc
