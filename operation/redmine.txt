@@ -1,7 +1,9 @@
 
+cd /tmp
 wget http://www.redmine.org/releases/redmine-2.5.0.tar.gz
 tar xfzv redmine-2.5.0.tar.gz
-cd redmine-2.5.0
+mv /tmp/redmine-2.5.0 ~/software
+cd ~/software/redmine-2.5.0
 
 mysql 
 > create database redmine character set utf8;
@@ -26,7 +28,7 @@ RAILS_ENV=production rake db:migrate
 RAILS_ENV=production rake redmine:load_default_data
 
 mkdir -p tmp tmp/pdf public/plugin_assets
-sudo chown -R redmine:redmine files log tmp public/plugin_assets
+sudo chown -R <user>:<group> files log tmp public/plugin_assets
 sudo chmod -R 755 files log tmp public/plugin_assets
 
 ruby script/rails server webrick -e production
@@ -36,7 +38,6 @@ login: admin
 password: admin
 
 cp config/configuration.yml.example config/configuration.yml
-
 cp config/additional_environment.rb.example config/additional_environment.rb
 
 mysqldump -u <username> -p<password> <redmine_database> | gzip > /path/to/backup/db/redmine_`date +%y_%m_%d`.gz
