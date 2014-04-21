@@ -1,0 +1,29 @@
+apt-get install bind9
+
+修改/etc/bind/named.conf，加入一行：
+include "/etc/bind/named.conf.kkche";
+
+编辑/etc/bind/named.conf.kkche"，内容为：
+zone "kkche.org" {
+        type master;
+        file "/etc/bind/db.kkche.org";
+};
+
+编辑/etc/bind/db.kkche.org，内容为：
+$TTL 86400
+$ORIGIN kkche.org.
+@       IN  SOA ns1.gokeepit.com root (
+            2013031901      ;serial
+            12h     ;refresh
+            7200        ;retry
+            604800      ;expire 
+            86400       ;mininum
+       )
+            NS  ns1.gokeepit.com.
+            NS  ns2.gokeepit.com.
+            MX  10  mail.cobb.com.
+www     IN  A   203.195.197.100
+        IN  A   203.195.197.100
+mail        IN  A   203.195.197.100
+redmine     IN  A   203.195.197.100
+gitlab      IN  A   203.195.197.100
