@@ -14,6 +14,9 @@ https://github.com/typesafehub/angular-seed-play
 Spray and Websocket interfaces to actors
 https://github.com/cuali/SprayEasterEggs
 
+Play Slick quickstart
+https://github.com/loicdescotte/activator-play-slick
+
 Actor per-request model with spray
 https://github.com/NET-A-PORTER/spray-actor-per-request
 
