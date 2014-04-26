@@ -31,6 +31,7 @@ mongo
 > show collections
 > db.<collection_name>.drop()
 > db.<collection_name>.find().limit(5)
+> db.<collection_name>.remove({ })
 > db.fs.chunks.count()
 > db.fs.chunks.findOne()
 > db.fs.files.find({_id:ObjectId("<oid>")})

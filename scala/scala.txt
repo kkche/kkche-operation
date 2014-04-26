@@ -1,8 +1,9 @@
 
-cd /opt
-sudo wget http://www.scala-lang.org/files/archive/scala-2.10.3.tgz
-sudo tar xfz scala-2.10.3.tgz
-sudo chown -R `whoami`:root /opt/scala-2.10.3/
+cd /tmp
+wget http://www.scala-lang.org/files/archive/scala-2.10.3.tgz
+tar xfz scala-2.10.3.tgz
+sudo mv scala-2.10.3 /opt/
+sudo chown -R root:root /opt/scala-2.10.3/
 sudo chmod -R u+x /opt/scala-2.10.3/bin/
 
 sudo vi /etc/profile.d/scala.sh
@@ -13,7 +14,7 @@ source /etc/profile.d/scala.sh
 
 #Eclipse update site
 http://download.scala-ide.org/sdk/helium/e38/scala210/stable/site
-http://alchim31.free.fr/m2e-scala/update-site
 
+#gedit plugin
 sudo cp scala.lang /usr/share/gtksourceview-3.0/language-specs/
 

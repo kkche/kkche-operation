@@ -1,13 +1,13 @@
 
-cd /opt
-sudo wget http://repo.scala-sbt.org/scalasbt/sbt-native-packages/org/scala-sbt/sbt/0.13.1/sbt.tgz
-sudo tar xfz sbt.tgz
-sudo mv sbt sbt-0.13.1
-sudo chown -R `whoami`:root /opt/sbt-0.13.1/
-sudo chmod -R u+x /opt/sbt-0.13.1/bin/
+cd /tmp
+wget http://dl.bintray.com/sbt/native-packages/sbt/0.13.2/sbt-0.13.2.tgz
+tar xzf sbt-0.13.2.tgz
+sudo mv sbt /opt/sbt-0.13.2
+sudo chown -R root:root /opt/sbt-0.13.2/
+sudo chmod -R u+x /opt/sbt-0.13.2/bin/
 
 sudo vi /etc/profile.d/scala.sh
-export SBT_HOME=/opt/sbt-0.13.1
+export SBT_HOME=/opt/sbt-0.13.2
 export PATH=$SBT_HOME/bin:$PATH
 
 source /etc/profile.d/scala.sh
@@ -22,7 +22,7 @@ http://oss.sonatype.org/content/repositories/releases
 http://oss.sonatype.org/content/repositories/snapshots
 
 sudo $SBT_HOME/bin/sbt
-sudo ls -al /root/.sbt/boot/scala-2.10.3/org.scala-sbt/sbt/0.13.1
+sudo ls -al /root/.sbt/boot/scala-2.10.3/org.scala-sbt/sbt/0.13.2
 sudo ls -al /root/.ivy2/cache
 
 mkdir ~/.sbt/0.13/plugins
@@ -69,5 +69,5 @@ scalaVersion := "2.10.3"
 mkdir project
 
 #project/build.properties
-sbt.version=0.13.1
+sbt.version=0.13.2
 
