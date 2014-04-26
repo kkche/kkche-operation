@@ -17,14 +17,14 @@ http://www.yardvps.com/
 sudo apt-get install pptpd
 
 sudo vi /etc/pptpd.conf
-localip 192.168.0.1
-remoteip 192.168.0.100-255
+localip 192.168.200.1
+remoteip 192.168.200.100-255
 
 sudo vi /etc/ppp/pptpd-options
 ms-dns 8.8.8.8
 ms-dns 8.8.4.4
 
-sudo echo "user pptpd user *" >> /etc/ppp/chap-secrets
+sudo echo "<username> pptpd <password> *" >> /etc/ppp/chap-secrets
 
 sudo /etc/init.d/pptpd restart
 
@@ -34,5 +34,6 @@ net.ipv4.ip_forward=1
 sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 
 sudo vi /etc/rc.local
-iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE  #above "exit 0"
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE 
+exit 0
 
