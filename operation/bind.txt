@@ -27,3 +27,6 @@ www     IN  A   203.195.197.100
 mail        IN  A   203.195.197.100
 redmine     IN  A   203.195.197.100
 gitlab      IN  A   203.195.197.100
+
+重新读取配置
+rndc reload
