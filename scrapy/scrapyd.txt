@@ -45,3 +45,9 @@ scrapyd     IN  A   203.195.197.100
 
 rndc reload
 ln -s /etc/nginx/sites-available/scrapyd /etc/nginx/sites-enabled/scrapyd
+
+发布kkcrawler项目
+scrapy deploy scrapyd -p kkcrawler
+
+启动spider
+curl -u scrapyd -p http://scrapyd.kkche.org/schedule.json -d project=kkcrawler -d spider=FEComSpider
