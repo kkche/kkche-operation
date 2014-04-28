@@ -37,7 +37,7 @@ sudo vi /etc/apt/sources.list
 deb http://archive.canonical.com/ubuntu precise partner
 deb-src http://archive.canonical.com/ubuntu precise partner
 
-sudo apt-get install linux-headers-generic-lts-saucy linux-image-generic-lts-saucy
+sudo apt-get install linux-headers-generic-lts-trusty linux-image-generic-lts-trusty
 
 sudo apt-get install ia32-libs
 tar xvf AdbeRdr9.5.1-1_i486linux_enu.tar.bz2

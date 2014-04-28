@@ -1,20 +1,15 @@
 
-cd /tmp
-wget http://192.168.88.100/programming/lucene/release/elasticsearch-0.90.7.tar.gz
-tar xfz elasticsearch-0.90.7.tar.gz
-sudo mv elasticsearch-0.90.7 /opt
-sudo chown -R `whoami`:root /opt/elasticsearch-0.90.7
+wget -q -O - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | sudo apt-key add -
 
-sudo vi /etc/profile.d/elasticsearch.sh
-export ES_HOME=/opt/elasticsearch-0.90.7
-export PATH=$ES_HOME/bin:$PATH
+echo 'deb http://packages.elasticsearch.org/elasticsearch/1.1/debian stable main' | \
+sudo tee /etc/apt/sources.list.d/elasticsearch.list
 
-$ES_HOME/bin/elasticsearch
+sudo apt-get update && sudo apt-get install elasticsearch
+
+sudo service elasticsearch start
 
 http://<es-host>:9200/_status?pretty=true
 http://<es-host>:9200/_stats?pretty=true
 http://<es-host>:9200/_mapping?pretty=true
 http://<es-host>:9200/_search?pretty=true&size=100&&q=*
-
-ps aux | grep elasticsearch | awk '{print $2}' | xargs sudo kill -9
 

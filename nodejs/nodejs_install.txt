@@ -1,28 +1,9 @@
 
 sudo apt-get install python-software-properties python g++ make
 
-#manual
-cd /tmp
-wget http://nodejs.org/dist/v0.10.24/node-v0.10.24-linux-x64.tar.gz
-tar zxf node-v0.10.24-linux-x64.tar.gz
-sudo mv /tmp/node-v0.10.24-linux-x64 /opt/node-v0.10.24
-sudo chown -R root:root /opt/node-v0.10.24
-
-sudo vi /etc/profile.d/nodejs.sh
-export NODE_HOME=/opt/node-v0.10.24
-export PATH=$NODE_HOME/bin:$PATH
-
-source /etc/profile.d/nodejs.sh
-
-sudo $(which npm) -g ls
-
-sudo $(which npm) -g install <package_name>
-
-#package
 sudo add-apt-repository ppa:chris-lea/node.js
-sudo apt-get update
-sudo apt-get install nodejs
+sudo apt-get update && sudo apt-get install nodejs
 
-#eclipse plugin
-http://dl.bintray.com/nodeclipse/nodeclipse/0.9.05/
+sudo npm -g ls
+sudo npm -g install <package_name>
 
