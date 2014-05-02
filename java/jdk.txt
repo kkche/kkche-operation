@@ -3,35 +3,37 @@ sudo apt-get install openjdk-6-jdk
 update-java-alternatives -l
 
 cd /tmp
-tar xvzf jdk1.7.0_51-linux-x64.gz
-sudo mv jdk1.7.0_51 /opt
-sudo chown -R root:root /opt/jdk1.7.0_51
+tar xvzf jdk-7u55-linux-x64.tar.gz
+sudo mv jdk1.7.0_55 /opt
+sudo chown -R root:root /opt/jdk1.7.0_55
+
+sudo ln -f -s /opt/jdk1.7.0_55 /usr/lib/jvm/default-java
 
 sudo vi /etc/profile.d/java.sh
-export JAVA_HOME=/opt/jdk1.7.0_51
+export JAVA_HOME=/usr/lib/jvm/default-java
 export PATH=$JAVA_HOME/bin:$PATH
 export CLASSPATH=$CLASSPATH:$JAVA_HOME/lib/
 export JAVA_OPTS="-Xmx8192m -XX:MaxPermSize=4096m"
 
 source /etc/profile.d/java.sh
 
-sudo update-alternatives --install /usr/bin/java java /opt/jdk1.7.0_51/bin/java 1081
-sudo update-alternatives --install /usr/bin/javac javac /opt/jdk1.7.0_51/bin/javac 1081
-sudo update-alternatives --install /usr/bin/javadoc javadoc /opt/jdk1.7.0_51/bin/javadoc 1081
-sudo update-alternatives --install /usr/bin/javah javah /opt/jdk1.7.0_51/bin/javah 1081
-sudo update-alternatives --install /usr/bin/javap javap /opt/jdk1.7.0_51/bin/javap 1081
-sudo update-alternatives --install /usr/bin/javaws javaws /opt/jdk1.7.0_51/bin/javaws 1081
-sudo update-alternatives --install /usr/bin/jar jar /opt/jdk1.7.0_51/bin/jar 1081
-sudo update-alternatives --install /usr/bin/jps jps /opt/jdk1.7.0_51/bin/jps 1081
+sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/default-java/bin/java 1081
+sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/default-java/bin/javac 1081
+sudo update-alternatives --install /usr/bin/javadoc javadoc /usr/lib/jvm/default-java/bin/javadoc 1081
+sudo update-alternatives --install /usr/bin/javah javah /usr/lib/jvm/default-java/bin/javah 1081
+sudo update-alternatives --install /usr/bin/javap javap /usr/lib/jvm/default-java/bin/javap 1081
+sudo update-alternatives --install /usr/bin/javaws javaws /usr/lib/jvm/default-java/bin/javaws 1081
+sudo update-alternatives --install /usr/bin/jar jar /usr/lib/jvm/default-java/bin/jar 1081
+sudo update-alternatives --install /usr/bin/jps jps /usr/lib/jvm/default-java/bin/jps 1081
 
-sudo update-alternatives --set java /opt/jdk1.7.0_51/bin/java
-sudo update-alternatives --set javac /opt/jdk1.7.0_51/bin/javac
-sudo update-alternatives --set javadoc /opt/jdk1.7.0_51/bin/javadoc
-sudo update-alternatives --set javah /opt/jdk1.7.0_51/bin/javah
-sudo update-alternatives --set javap /opt/jdk1.7.0_51/bin/javap
-sudo update-alternatives --set javaws /opt/jdk1.7.0_51/bin/javaws
-sudo update-alternatives --set jar /opt/jdk1.7.0_51/bin/jar
-sudo update-alternatives --set jps /opt/jdk1.7.0_51/bin/jps
+sudo update-alternatives --set java /usr/lib/jvm/default-java/bin/java
+sudo update-alternatives --set javac /usr/lib/jvm/default-java/bin/javac
+sudo update-alternatives --set javadoc /usr/lib/jvm/default-java/bin/javadoc
+sudo update-alternatives --set javah /usr/lib/jvm/default-java/bin/javah
+sudo update-alternatives --set javap /usr/lib/jvm/default-java/bin/javap
+sudo update-alternatives --set javaws /usr/lib/jvm/default-java/bin/javaws
+sudo update-alternatives --set jar /usr/lib/jvm/default-java/bin/jar
+sudo update-alternatives --set jps /usr/lib/jvm/default-java/bin/jps
 
 sudo update-alternatives --display java
 sudo update-alternatives --display javac
@@ -51,17 +53,15 @@ sudo update-alternatives --config javaws
 sudo update-alternatives --config jar
 sudo update-alternatives --config jps
 
-sudo ln -f -s /opt/jdk1.7.0_51 /usr/lib/jvm/default-java
-
 java -version
 ls -la /etc/alternatives/java*
 
-sudo update-alternatives --remove java /opt/jdk1.7.0_51/bin/java
-sudo update-alternatives --remove javac /opt/jdk1.7.0_51/bin/javac
-sudo update-alternatives --remove javadoc /opt/jdk1.7.0_51/bin/javadoc
-sudo update-alternatives --remove javah /opt/jdk1.7.0_51/bin/javah
-sudo update-alternatives --remove javap /opt/jdk1.7.0_51/bin/javap
-sudo update-alternatives --remove javaws /opt/jdk1.7.0_51/bin/javaws
-sudo update-alternatives --remove javap /opt/jdk1.7.0_51/bin/jar
-sudo update-alternatives --remove javaws /opt/jdk1.7.0_51/bin/jps
+sudo update-alternatives --remove java /usr/lib/jvm/default-java/bin/java
+sudo update-alternatives --remove javac /usr/lib/jvm/default-java/bin/javac
+sudo update-alternatives --remove javadoc /usr/lib/jvm/default-java/bin/javadoc
+sudo update-alternatives --remove javah /usr/lib/jvm/default-java/bin/javah
+sudo update-alternatives --remove javap /usr/lib/jvm/default-java/bin/javap
+sudo update-alternatives --remove javaws /usr/lib/jvm/default-java/bin/javaws
+sudo update-alternatives --remove javap /usr/lib/jvm/default-java/bin/jar
+sudo update-alternatives --remove javaws /usr/lib/jvm/default-java/bin/jps
 
