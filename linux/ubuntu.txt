@@ -1,7 +1,7 @@
 
 sudo vi /etc/rc.local
 echo 15 > /sys/class/backlight/acpi_video0/brightness
-echo 3656 > /sys/class/backlight/intel_backlight/brightness
+echo 2907 > /sys/class/backlight/intel_backlight/brightness
 exit 0
 
 cat /sys/class/backlight/acpi_video0/actual_brightness

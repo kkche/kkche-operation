@@ -1,13 +1,12 @@
 
 cd /tmp
-wget http://www.scala-lang.org/files/archive/scala-2.10.3.tgz
-tar xfz scala-2.10.3.tgz
-sudo mv scala-2.10.3 /opt/
-sudo chown -R root:root /opt/scala-2.10.3/
-sudo chmod -R u+x /opt/scala-2.10.3/bin/
+tar xfz scala-2.10.4.tgz
+sudo mv scala-2.10.4 /opt/
+sudo chown -R root:root /opt/scala-2.10.4/
+sudo chmod -R u+x /opt/scala-2.10.4/bin/
 
 sudo vi /etc/profile.d/scala.sh
-export SCALA_HOME=/opt/scala-2.10.3
+export SCALA_HOME=/opt/scala-2.10.4
 export PATH=$SCALA_HOME/bin:$PATH
 
 source /etc/profile.d/scala.sh
