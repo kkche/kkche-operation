@@ -1,5 +1,9 @@
 
-sudo apt-get install r-base
+sudo bash -c 'echo "deb http://mirror.bjtu.edu.cn/cran/bin/linux/ubuntu precise/" >> /etc/apt/sources.list.d/R.list'
+sudo gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9
+sudo gpg -a --export E084DAB9 | sudo apt-key add -
+
+sudo apt-get update & sudo apt-get install r-base
 
 $ r
 > install.packages("<packages name>")
