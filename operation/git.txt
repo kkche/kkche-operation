@@ -18,7 +18,7 @@ vi test_project/.git/config
 	remote = origin
 	merge = refs/heads/master
 
-git clone git@<host>:test_project.git
+git clone git@<host>:test_project.git -b master --depth 1
 
 #git commands
 git tag -l

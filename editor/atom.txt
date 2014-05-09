@@ -1,0 +1,28 @@
+
+#require nodejs
+
+sudo apt-get install libgnome-keyring-dev
+sudo npm config set python /usr/bin/python2 -g
+
+cd ~/software
+git clone https://github.com/atom/atom
+cd atom
+script/build
+sudo script/grunt install
+
+sudo vi /usr/share/applications/atom.desktop
+[Desktop Entry]
+Name=Atom
+Exec=atom %F
+Icon=/home/<username>/software/atom/resources/atom.png
+Type=Application
+StartupNotify=true
+Categories=GNOME;GTK;Utility;TextEditor;
+MimeType=text/plain;
+Terminal=false
+X-Ayatana-Desktop-Shortcuts=NewWindow
+
+[NewWindow Shortcut Group]
+Name=New Window
+Exec=atom -n
+TargetEnvironment=Unity

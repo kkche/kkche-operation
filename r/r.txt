@@ -1,14 +1,13 @@
 
-sudo bash -c 'echo "deb http://mirror.bjtu.edu.cn/cran/bin/linux/ubuntu precise/" >> /etc/apt/sources.list.d/R.list'
+sudo bash -c 'echo "deb http://mirror.bjtu.edu.cn/cran/bin/linux/ubuntu precise/" >> /etc/apt/sources.list.d/r.list'
 sudo gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9
 sudo gpg -a --export E084DAB9 | sudo apt-key add -
 
 sudo apt-get update && sudo apt-get install r-base
 
-# R Console
 $ R
-> install.packages("<packages name>")
-> require(<packages name>)
+> install.packages("<package_name>")
+> require(<package_name>)
 
 > x <- rnorm(9)
 

@@ -19,6 +19,7 @@ $ help play
 $ ~ compile
 $ ~ run
 $ ~ test
+$ ~ test-only <some_package>.<some_class>
 $ dependencies
 $ eclipse with-source=true
 $ eclipse skip-parents=false
