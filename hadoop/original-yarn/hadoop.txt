@@ -109,7 +109,7 @@ vi $HADOOP_HOME/etc/hadoop/mapred-site.xml
 </configuration>
 
 vi $HADOOP_HOME/etc/hadoop/hadoop-env.sh
-export JAVA_HOME=/opt/jdk1.7.0_51
+export JAVA_HOME=/usr/lib/jvm/default-java
 export HADOOP_COMMON_LIB_NATIVE_DIR=${HADOOP_PREFIX}/lib/native
 export HADOOP_OPTS="-Djava.library.path=$HADOOP_PREFIX/lib"
 

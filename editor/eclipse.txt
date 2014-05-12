@@ -18,7 +18,6 @@ Terminal=false
 #Plugins
 Spring Tool Suite
 Thymeleaf (http://www.thymeleaf.org/eclipse-plugin-update-site/)
-Aptana
 Grep Console
 ResourceBundle Editor
 RunJettyRun (http://run-jetty-run.googlecode.com/svn/trunk/updatesite-nightly)
