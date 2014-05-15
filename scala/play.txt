@@ -1,6 +1,6 @@
 
-cd ~/software
 unzip play-2.2.3.zip
+mv play-2.2.3 ~/software/
 
 vi ~/.bash_profile
 export PLAY_HOME=$HOME/software/play-2.2.3

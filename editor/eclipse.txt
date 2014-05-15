@@ -1,8 +1,5 @@
 
 vi eclipse.ini
---launcher.XXMaxPermSize
-4096m
--XX:MaxPermSize=2560m
 -Xms1024m
 -Xmx4096m
 
@@ -16,6 +13,8 @@ StartupNotify=true
 Terminal=false
 
 #Plugins
+Marketplace Client
+EGit
 Spring Tool Suite
 Thymeleaf (http://www.thymeleaf.org/eclipse-plugin-update-site/)
 Grep Console

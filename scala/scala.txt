@@ -1,18 +1,14 @@
 
-cd /tmp
-tar xfz scala-2.10.4.tgz
-sudo mv scala-2.10.4 /opt/
-sudo chown -R root:root /opt/scala-2.10.4/
-sudo chmod -R u+x /opt/scala-2.10.4/bin/
+tar xfz scala-2.11.0.tgz
+sudo mv scala-2.11.0 /opt/
+sudo chown -R root:root /opt/scala-2.11.0/
+sudo chmod -R u+x /opt/scala-2.11.0/bin/
 
 sudo vi /etc/profile.d/scala.sh
-export SCALA_HOME=/opt/scala-2.10.4
+export SCALA_HOME=/opt/scala-2.11.0
 export PATH=$SCALA_HOME/bin:$PATH
 
 source /etc/profile.d/scala.sh
-
-#Eclipse update site
-http://download.scala-ide.org/sdk/helium/e38/scala210/stable/site
 
 #gedit plugin
 sudo cp scala.lang /usr/share/gtksourceview-3.0/language-specs/

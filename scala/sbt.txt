@@ -1,13 +1,11 @@
 
-cd /tmp
-wget http://dl.bintray.com/sbt/native-packages/sbt/0.13.2/sbt-0.13.2.tgz
-tar xzf sbt-0.13.2.tgz
-sudo mv sbt /opt/sbt-0.13.2
-sudo chown -R root:root /opt/sbt-0.13.2/
-sudo chmod -R u+x /opt/sbt-0.13.2/bin/
+tar xzf sbt-0.13.5-RC1.tgz
+sudo mv sbt /opt/sbt-0.13.5-RC1
+sudo chown -R root:root /opt/sbt-0.13.5-RC1/
+sudo chmod -R u+x /opt/sbt-0.13.5-RC1/bin/
 
 sudo vi /etc/profile.d/scala.sh
-export SBT_HOME=/opt/sbt-0.13.2
+export SBT_HOME=/opt/sbt-0.13.5-RC1
 export PATH=$SBT_HOME/bin:$PATH
 
 source /etc/profile.d/scala.sh
@@ -21,53 +19,20 @@ http://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/
 http://oss.sonatype.org/content/repositories/releases
 http://oss.sonatype.org/content/repositories/snapshots
 
-sudo $SBT_HOME/bin/sbt
-sudo ls -al /root/.sbt/boot/scala-2.10.3/org.scala-sbt/sbt/0.13.2
-sudo ls -al /root/.ivy2/cache
-
-mkdir ~/.sbt/0.13/plugins
-
-vi ~/.sbt/0.13/plugins/plugins.sbt
-addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.4.0")
-
-sbt eclipse
-
 vi ~/.sbt/repositories
 [repositories]
   local
   ivy-proxy-releases: http://localhost:8081/nexus/content/groups/public/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]
   maven-proxy-releases: http://localhost:8081/nexus/content/groups/public/
 
-#Plugins.scala
-override def ivyRepositories = repositories
+sudo $SBT_HOME/bin/sbt
+sudo ls -al /root/.sbt/boot/scala-2.10.3/org.scala-sbt/sbt/0.13.2
+sudo ls -al /root/.ivy2/cache
 
-#example
-mkdir hello
-cd hello
-echo 'object Hi { def main(args: Array[String]) = println("Hi!") }' > hello.scala
-sbt
-> clean
-> ~ compile
-> package
-> test
-> run
-> reload
-> exit
-> help
-> !:
-> console
-scala> :help
-scala> :quit
+mkdir -p ~/.sbt/0.13/plugins
 
-#build.sbt
-name := "hello"
+vi ~/.sbt/0.13/plugins/plugins.sbt
+addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.4.0")
 
-version := "1.0"
-
-scalaVersion := "2.10.3"
-
-mkdir project
-
-#project/build.properties
-sbt.version=0.13.2
+sbt eclipse
 

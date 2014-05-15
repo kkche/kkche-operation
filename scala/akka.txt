@@ -1,6 +1,4 @@
 
-cd /tmp
-wget http://downloads.typesafe.com/akka/akka-2.3.2.zip
 unzip akka-2.3.2.zip
 sudo mv akka-2.3.2 /opt/
 sudo chown -R root:root /opt/akka-2.3.2/

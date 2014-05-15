@@ -2,7 +2,7 @@
 sudo apt-get install maven
 
 sudo vi /etc/profile.d/maven.sh
-export MAVEN_OPTS="-Xmx8192m -XX:MaxPermSize=4096m"
+export MAVEN_OPTS="-Xmx8192m"
 
 source /etc/profile.d/maven.sh
 

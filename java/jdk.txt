@@ -2,18 +2,18 @@
 sudo apt-get install openjdk-6-jdk
 update-java-alternatives -l
 
-cd /tmp
-tar xvzf jdk-7u55-linux-x64.tar.gz
-sudo mv jdk1.7.0_55 /opt
-sudo chown -R root:root /opt/jdk1.7.0_55
+tar xvzf jdk-8u5-linux-x64.tar.gz
+sudo mv jdk1.8.0_05 /opt
+sudo chown -R root:root /opt/jdk1.8.0_05
 
-sudo ln -f -s /opt/jdk1.7.0_55 /usr/lib/jvm/default-java
+sudo rm /usr/lib/jvm/default-java
+sudo ln -f -s /opt/jdk1.8.0_05 /usr/lib/jvm/default-java
 
 sudo vi /etc/profile.d/java.sh
 export JAVA_HOME=/usr/lib/jvm/default-java
 export PATH=$JAVA_HOME/bin:$PATH
 export CLASSPATH=$CLASSPATH:$JAVA_HOME/lib/
-export JAVA_OPTS="-Xmx8192m -XX:MaxPermSize=4096m"
+export JAVA_OPTS="-Xmx8192m"
 
 source /etc/profile.d/java.sh
 

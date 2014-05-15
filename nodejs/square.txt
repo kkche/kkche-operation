@@ -3,7 +3,7 @@ sudo gem update --system
 sudo gem install compass
 sudo npm install -g grunt-cli
 
-安装yeomon：
+安装yeoman：
 sudo npm install -g yo
 
 安装bower：
