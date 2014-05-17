@@ -32,7 +32,7 @@ sudo ls -al /root/.ivy2/cache
 mkdir -p ~/.sbt/0.13/plugins
 
 vi ~/.sbt/0.13/plugins/plugins.sbt
-addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.4.0")
+addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.5.0")
 
 sbt eclipse
 
