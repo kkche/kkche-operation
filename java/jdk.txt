@@ -62,7 +62,6 @@ sudo update-alternatives --config jps
 
 java -version
 ls -la /etc/alternatives/java*
-
 update-java-alternatives -l
 
 sudo update-alternatives --remove java /usr/lib/jvm/default-java/bin/java
