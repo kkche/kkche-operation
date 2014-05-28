@@ -133,11 +133,11 @@ sudo vi /etc/maven/settings.xml
 </project> 
 
 ##nexus upstart
-sudo cp /usr/<username>/nexus-<version>/bin/nexus /etc/init.d/nexus
+sudo cp /home/<username>/software/nexus-<version>/bin/nexus /etc/init.d/nexus
 sudo chmod 755 /etc/init.d/nexus
 sudo update-rc.d nexus defaults
 sudo vim /etc/init.d/nexus
->NEXUS_HOME="/usr/<username>/nexus-<version>/"
+>NEXUS_HOME="/home/<username>/software/nexus-<version>/"
 >RUN_AS_USER=<username>
 >PLATFORM=linux-x86-64
 >PLATFORM_DIR="${NEXUS_HOME}/bin/jsw/${PLATFORM}"
