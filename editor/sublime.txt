@@ -31,3 +31,5 @@ EOF
 
 sudo sed -i 's/gedit.desktop/sublime.desktop/g' /usr/share/applications/defaults.list
 
+https://sublime.wbond.net/
+
