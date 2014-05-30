@@ -19,20 +19,20 @@ http://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/
 http://oss.sonatype.org/content/repositories/releases
 http://oss.sonatype.org/content/repositories/snapshots
 
+mkdir -p ~/.sbt/0.13/plugins
+
 vi ~/.sbt/repositories
 [repositories]
   local
   ivy-proxy-releases: http://localhost:8081/nexus/content/groups/public/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]
   maven-proxy-releases: http://localhost:8081/nexus/content/groups/public/
 
+vi ~/.sbt/0.13/plugins/plugins.sbt
+addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.5.0")
+
 sudo $SBT_HOME/bin/sbt
 sudo ls -al /root/.sbt/boot/scala-2.10.3/org.scala-sbt/sbt/0.13.2
 sudo ls -al /root/.ivy2/cache
-
-mkdir -p ~/.sbt/0.13/plugins
-
-vi ~/.sbt/0.13/plugins/plugins.sbt
-addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.5.0")
 
 sbt eclipse
 
