@@ -1,14 +1,4 @@
 
-#package
-sudo add-apt-repository ppa:webupd8team/java
-sudo apt-get update
-sudo apt-get install oracle-java8-installer
-sudo apt-get install oracle-java8-set-default
-
-sudo rm /usr/lib/jvm/default-java
-sudo ln -f -s /usr/lib/jvm/java-8-oracle /usr/lib/jvm/default-java
-
-#manual
 tar xvzf jdk-8u5-linux-x64.tar.gz
 sudo mv jdk1.8.0_05 /opt
 sudo chown -R root:root /opt/jdk1.8.0_05
