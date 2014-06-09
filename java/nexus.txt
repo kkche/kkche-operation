@@ -1,8 +1,8 @@
 
-cd ~/software
+cd /tmp
 wget http://www.sonatype.org/downloads/nexus-latest-bundle.tar.gz
 tar xvzf nexus-latest-bundle.tar.gz
-rm nexus-latest-bundle.tar.gz
+mv nexus-<version> sonatype-work ~/software
 
 vi ~/.bash_profile
 export NEXUS_HOME=$HOME/software/nexus-<version>
@@ -15,6 +15,12 @@ source ~/.bash_profile
 
 $NEXUS_HOME/bin/nexus start &
 tail -f $NEXUS_HOME/logs/wrapper.log
+
+$NEXUS_HOME/bin/nexus stop
+
+cp nexus.xml $HOME/software/sonatype-work/nexus/conf
+
+$NEXUS_HOME/bin/nexus start &
 
 http://<hostname>:8081/nexus
 username:admin
@@ -107,16 +113,18 @@ sudo vi /etc/maven/settings.xml
 </project> 
 
 ##nexus upstart
-sudo cp /home/<username>/software/nexus-<version>/bin/nexus /etc/init.d/nexus
+sudo ln -s /home/<username>/software/nexus-<version>/bin/nexus /etc/init.d/nexus
 sudo chmod 755 /etc/init.d/nexus
 sudo update-rc.d nexus defaults
-sudo vim /etc/init.d/nexus
->NEXUS_HOME="/home/<username>/software/nexus-<version>/"
->RUN_AS_USER=<username>
->PLATFORM=linux-x86-64
->PLATFORM_DIR="${NEXUS_HOME}/bin/jsw/${PLATFORM}"
->WRAPPER_CMD="${PALTFORM_DIR}/wrapper"
->WRAPPER_CONF="${PLATFORM_DIR}/../conf/wrapper.conf"
->PIDDIR="${NEXUS_HOME}"
-service nexus start
+
+sudo vi /etc/init.d/nexus
+NEXUS_HOME="/home/<username>/software/nexus-<version>/"
+RUN_AS_USER=<username>
+PLATFORM=linux-x86-64
+PLATFORM_DIR="${NEXUS_HOME}/bin/jsw/${PLATFORM}"
+WRAPPER_CMD="${PALTFORM_DIR}/wrapper"
+WRAPPER_CONF="${PLATFORM_DIR}/../conf/wrapper.conf"
+PIDDIR="${NEXUS_HOME}"
+
+sudo service nexus start
 

@@ -8,7 +8,7 @@ cat /sys/class/backlight/acpi_video0/actual_brightness
 cat /sys/class/backlight/intel_backlight/actual_brightness
 
 sudo apt-get install language-pack-zh-hans language-pack-zh-hans-base \
-fonts-arphic-uming ttf-arphic-ukai ttf-wqy-zenhei
+fonts-arphic-uming fonts-arphic-ukai fonts-wqy-zenhei
 
 sudo locale-gen en_US en_US.UTF-8
 sudo dpkg-reconfigure locales
@@ -20,18 +20,18 @@ sudo apt-get install vim vim-scripts exuberant-ctags cscope
 sudo apt-get install vim-gnome vim-gtk
 sudo apt-get install unrar p7zip xchm fbreader
 
-gsettings set org.gnome.desktop.interface ubuntu-overlay-scrollbars false
+sudo apt-get install unity-tweak-tool
+
+sudo apt-get install dconf-tools
+org -> gnome -> desktop -> interface -> ubuntu-overlay-scrollbars
+
+gsettings set com.canonical.desktop.interface scrollbar-mode normal
 
 sudo apt-get install gconf-editor
 
 gconftool-2 --set --type=list --list-type=string \
 /apps/gedit-2/preferences/encodings/auto_detected  \
 "[UTF-8,GB2312,GBK,GB18030,CURRENT,ISO-8859-15,UTF-16]"
-
-sudo add-apt-repository ppa:mitya57/retext-beta
-sudo apt-get update && sudo apt-get install retext
-
-sudo add-apt-repository --remove ppa:mitya57/retext-beta
 
 killall ibus-daemon; ibus-daemon -d
 
