@@ -30,3 +30,9 @@ gitlab      IN  A   203.195.197.100
 
 重新读取配置
 rndc reload
+
+
+curl 'http://58.221.57.73:8088/webService/NIDCXService.asmx' \
+    -H 'Content-Type: application/soap+xml; charset=utf-8' \
+    -H 'Host: 58.221.57.73' \
+    -d '<?xml version="1.0" encoding="utf-8"?><soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope"><soap12:Body><GetCXInfoByVIN xmlns="http://tempuri.org/"><vin>LH17CKKFX9H111012</vin></GetCXInfoByVIN></soap12:Body></soap12:Envelope>

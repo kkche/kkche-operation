@@ -146,3 +146,20 @@ sudo vim /etc/init.d/nexus
 >PIDDIR="${NEXUS_HOME}"
 service nexus start
 
+
+//*[@id="divCarList"]/div/a[10]
+
+//div[contains(@class, "ophone_height")]/img/@src
+
+//*[@id="divCarList"]/ul/li/div[contains(@class, "pcar_pic")]/a
+
+//*[@id="carList"]/li[1]/div[2]/div[1]/strong/a
+
+/html/body/div/div/div/div/div/ul/li/a[contains(text(), "\u4e0b\u4e00\u9875")]/@href
+
+//*[@id="carList"]/li/div/div/strong/a[contains(@class, "a_grey")]/@href
+
+/html/body/div/div/div/div[contains(@class, "otop_div")]/h1/b
+
+
+18810321167 罗 
