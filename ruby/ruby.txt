@@ -1,17 +1,7 @@
 
-#compile
-sudo apt-get remove ruby1.8
-mkdir /tmp/ruby && cd /tmp/ruby
-curl --progress ftp://ftp.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p353.tar.gz | tar xz
-cd ruby-2.0.0-p353
-./configure --disable-install-rdoc
-make
-sudo make install
-sudo gem install bundler --no-ri --no-rdoc
-
-#package
-sudo apt-get install ruby ruby-dev rubygems ri libruby
-sudo apt-get install ruby1.9.1 ruby1.9.1-dev ri1.9.1 libruby1.9.1
+sudo apt-get install python-software-properties
+sudo apt-add-repository ppa:brightbox/ruby-ng
+sudo apt-get update && sudo apt-get install ruby2.1 ruby2.1-dev
 
 sudo update-alternatives --config ruby
 sudo update-alternatives --config gem
@@ -19,88 +9,14 @@ sudo update-alternatives --config gem
 ls /usr/lib/ruby/
 ls /var/lib/gems/
 
-#rbenv
-sudo apt-get install build-essential git
-git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
-echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
-echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
-echo '[[ -f $HOME/.bash_profile ]] && . $HOME/.bash_profile' >> ~/.bashrc
-exec $SHELL -l
-
-git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
-
-rbenv versions
-rbenv version
-rbenv install --list
-rbenv install <version>
-rbenv global <version>
-rbenv local <version>
-rbenv shell <version>
-rbenv rehash
-rbenv which irb
-rbenv whence irb
-
-rbenv local --unset
-rbenv shell --unset
-
-cd ~/.rbenv
-git pull
-
-rbenv uninstall
-
-#osx
-brew update
-brew install rbenv
-brew install ruby-build
-
-#rvm
-curl -L https://get.rvm.io | bash -s stable --rails --autolibs=enabled --ruby=1.9.3
-
-less /etc/group
-sudo usermod -aG rvm user
-id -nG user
-
-rvm requirements
-
-#osx
-brew update
-brew install autoconf automake libksba libyaml
-brew install https://raw.github.com/Homebrew/homebrew-dupes/master/apple-gcc42.rb
-bash < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer )
-rvm get head
-
-vi ~/.bashrc
-[[ -f $HOME/.bash_profile ]] && . $HOME/.bash_profile
-PATH=$PATH:$HOME/.rvm/bin
-
-vi ~/.bash_profile
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
-which ruby
-rvm list known
-rvm list
-rvm install 1.9.3
-rvm use 1.9.3 --default
-rvm list default
-rvm system
-rvm default
-rvm gemdir
-rvm get latest
-rvm reload
-rvm upgrade 1.9.2-p180 1.9.2-p290
-rvm rubygems current
-rvm implode
-
-#gem
-gem sources -l
-gem sources -a http://ruby.taobao.org/
-gem sources -r https://rubygems.org/
-gem install <gem-name> --source http://ruby.taobao.org/
-gem update
-gem update --system
-gem env path
-gem search -rd pkgname
-gem list | cut -d" " -f1 | xargs gem uninstall -aIx
-
-bundle exec rake assets:precompile RAILS_ENV=development
+sudo gem sources -l
+sudo gem sources -a http://ruby.taobao.org/
+sudo gem sources -r https://rubygems.org/
+sudo gem install <package_name> --source http://ruby.taobao.org/
+sudo gem update
+sudo gem update --system
+sudo gem update <package_name>
+sudo gem env path
+sudo gem search -rd <package_name>
+sudo gem list | cut -d" " -f1 | xargs gem uninstall -aIx
 

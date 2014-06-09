@@ -1,4 +1,0 @@
-
-sudo apt-get install build-essential chrpath git-core libssl-dev libfontconfig1-dev
-sudo npm -g install hem
-

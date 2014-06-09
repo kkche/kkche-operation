@@ -3,6 +3,10 @@ sudo apt-get install git-core
 
 git config --global user.name "<name>"
 git config --global user.email "<email>"
+git config --global color.ui auto
+git config --global push.default simple
+git config --list
+cat ~/.gitconfig
 
 mkdir test_project
 cd test_project
@@ -20,7 +24,6 @@ vi test_project/.git/config
 
 git clone git@<host>:test_project.git -b master --depth 1
 
-#git commands
 git tag -l
 git tag tag_name -m 'tag message'
 git tag tag_name commit_id
@@ -41,12 +44,14 @@ git rm --cached file_name
 
 git pull
 git stash apply
+git checkout .
 git checkout -f
 git checkout file_name
 git checkout HEAD -- dir_name
 git reset HEAD file_name
 git reset --soft HEAD^
 git reset --hard ORIG_HEAD
+git clean -fdx
 git push -f
 git rebase -i HEAD
 git rebase master
@@ -62,10 +67,6 @@ git show HEAD^
 
 cat .gitmodules
 git submodule update --init --recursive
-
-vi ~/.gitconfig
-git config --list
-git config --global color.ui auto
 
 echo ".DS_Store" >> ~/.gitignore
 git config --global core.excludesfile ~/.gitignore
