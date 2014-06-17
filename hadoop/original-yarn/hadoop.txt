@@ -1,10 +1,25 @@
 
-tar xfz hadoop-2.2.0.tar.gz
-mv hadoop-2.2.0 ~/software
+#build Hadoop 2.4.0 on Ubuntu 14.04 LTS 64bit
+#install maven jdk
+
+sudo apt-get install build-essential
+sudo apt-get install libtool cmake zlib1g-dev libssl-dev protobuf-compiler
+
+tar xfz hadoop-2.4.0-src.tar.gz
+mv hadoop-2.4.0-src ~/software
+
+mvn package -Pnative -DskipTests -Dtar
+
+tar xfz hadoop-2.4.0.tar.gz
+mv hadoop-2.4.0 ~/software
+file ~/software/hadoop-2.4.0/lib/native*
+
+#config hadoop
 
 vi ~/.bash_profile
-export HADOOP_HOME=$HOME/software/hadoop-2.2.0
+export HADOOP_HOME=$HOME/software/hadoop-2.4.0
 export PATH=$HADOOP_HOME/bin:$PATH
+export PATH=$HADOOP_HOME/sbin:$PATH
 
 vi ~/.bashrc
 [[ -f $HOME/.bash_profile ]] && . $HOME/.bash_profile
@@ -142,9 +157,8 @@ $HADOOP_HOME/bin/hadoop fs -mkdir -p /user/$USER
 $HADOOP_HOME/bin/hadoop fs -mkdir input
 $HADOOP_HOME/bin/hadoop fs -put $HADOOP_HOME/etc/hadoop/*.xml input
 $HADOOP_HOME/bin/hadoop fs -ls input
-$HADOOP_HOME/bin/hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.2.0.jar grep input output 'dfs[a-z.]+'
+$HADOOP_HOME/bin/hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.4.0.jar grep input output 'dfs[a-z.]+'
 $HADOOP_HOME/bin/hadoop fs -ls
 $HADOOP_HOME/bin/hadoop fs -ls output
 $HADOOP_HOME/bin/hadoop fs -cat output/part-r-00000 | head
 $HADOOP_HOME/bin/hadoop fs -rm -r output*
-

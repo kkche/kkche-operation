@@ -1,35 +1,44 @@
 
-$ SPARK_HADOOP_VERSION=2.2.0 SPARK_YARN=true sbt/sbt assembly
+#build spark 1.0 by maven
+#install scala 2.10.4 first
 
-$ cp conf/log4j.properties.template conf/log4j.properties
+>tar xvzf spark-1.0.0.tgz
+>sh make-distribution.sh --hadoop 2.4.0 --with-yarn --with-hive
+# mvn clean package -Phadoop-2.4 -Phive -Pyarn -Dyarn.version=2.4.0 -Dhadoop.version=2.4.0 -DskipTests
+>cp -r dist $HOME/software/spark-1.0.0-hadoop-2.4.0
 
-$ SPARK_JAR=./assembly/target/scala-2.10/spark-assembly-0.9.0-incubating-hadoop2.2.0.jar \
-    ./bin/spark-class org.apache.spark.deploy.yarn.Client \
-      --jar examples/target/scala-2.10/spark-examples-assembly-0.9.0-incubating.jar \
-      --class org.apache.spark.examples.SparkPi \
-      --args yarn-standalone \
-      --num-workers 3 \
-      --master-memory 4g \
-      --worker-memory 2g \
-      --worker-cores 1
+#config spark
+>cd ~/software/spark-1.0.0-hadoop-2.4.0/conf
+>cp log4j.properties.template log4j.properties
+>cp spark-env.sh.template spark-env.sh
+>vim spark-env.sh
+HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
 
-$ cat $YARN_APP_LOGS_DIR/$YARN_APP_ID/container*_000001/stdout
+>cp spark-defaults.conf.template spark-defaults.conf
+>vim spark-defaults.conf
+spark.master            yarn-cluster
+spark.eventLog.dir      hdfs://<namenode>:8020/<directory>
 
-$ SPARK_JAR=./assembly/target/scala-2.10/spark-assembly-0.9.0-incubating-hadoop2.0.5-alpha.jar \
-SPARK_YARN_APP_JAR=examples/target/scala-2.10/spark-examples-assembly-0.9.0-incubating.jar \
-./bin/run-example org.apache.spark.examples.SparkPi yarn-client
+>vim $HOME/.bash_profile
+export SPARK_HOME=$HOME/software/spark-1.0.0-hadoop-2.4.0
+export PATH=$SPARK_HOME/bin:$PATH
+#export SPARK_JAR=$HOME/software/spark-1.0.0-hadoop-2.4.0/lib/spark-assembly-1.0.0-hadoop2.4.0.jar
+export SPARK_JAR=hdfs://<namenode>:8020/user/$USER/spark/lib/spark-assembly-1.0.0-hadoop2.4.0.jar
+>source $HOME/.bash_profile
 
-$ SPARK_JAR=./assembly/target/scala-2.10/spark-assembly-0.9.0-incubating-hadoop2.0.5-alpha.jar \
-SPARK_YARN_APP_JAR=examples/target/scala-2.10/spark-examples-assembly-0.9.0-incubating.jar \
-MASTER=yarn-client ./bin/spark-shell
+>$HADOOP_HOME/bin/hadoop fs -ls -R /
+>$HADOOP_HOME/bin/hadoop fs -mkdir -p /user/$USER/spark
+>$HADOOP_HOME/bin/hadoop fs -put $SPARK_HOME/lib/spark-assembly-1.0.0-hadoop2.4.0.jar /user/$USER/spark/lib
 
+#spark on yarn
+>spark-submit --class org.apache.spark.examples.SparkPi \
+    --master yarn-cluster \
+    --num-executors 2 \
+    --driver-memory 4g \
+    --executor-memory 2g \
+    --executor-cores 2  \
+    $HOME/software/spark-1.0.0-hadoop-2.4.0/lib/spark-examples-1.0.0-hadoop2.4.0.jar \
+    --arg 10
 
-
-
-
-
-
-
-
-
-
+>spark-shell
+http://<hostname>:4040
