@@ -1,4 +1,5 @@
 
+#brightness
 sudo vi /etc/rc.local
 echo 15 > /sys/class/backlight/acpi_video0/brightness
 echo 2907 > /sys/class/backlight/intel_backlight/brightness
@@ -7,6 +8,18 @@ exit 0
 cat /sys/class/backlight/acpi_video0/actual_brightness
 cat /sys/class/backlight/intel_backlight/actual_brightness
 
+#nvidia video card support
+sudo apt-get purge bumblebee libvdpau-va-gl1
+sudo apt-get install nvidia-331 nvidia-prime
+prime-select nvidia|intel|query
+
+sudo add-apt-repository ppa:nilarimogard/webupd8
+sudo apt-get update && sudo apt-get install prime-indicator
+
+#kernel
+sudo apt-get install linux-headers-generic-lts-trusty linux-image-generic-lts-trusty
+
+#language
 sudo apt-get install language-pack-zh-hans language-pack-zh-hans-base \
 fonts-arphic-uming fonts-arphic-ukai fonts-wqy-zenhei
 
@@ -16,16 +29,16 @@ sudo dpkg-reconfigure locales
 sudo vi /etc/default/locale
 LANG="en_US.UTF-8"
 
+#scrollbar
+sudo apt-get install dconf-tools
+#org -> gnome -> desktop -> interface -> ubuntu-overlay-scrollbars
+
+gsettings set com.canonical.desktop.interface scrollbar-mode normal
+
+#editor
 sudo apt-get install vim vim-scripts exuberant-ctags cscope
 sudo apt-get install vim-gnome vim-gtk
 sudo apt-get install unrar p7zip xchm fbreader
-
-sudo apt-get install unity-tweak-tool
-
-sudo apt-get install dconf-tools
-org -> gnome -> desktop -> interface -> ubuntu-overlay-scrollbars
-
-gsettings set com.canonical.desktop.interface scrollbar-mode normal
 
 sudo apt-get install gconf-editor
 
@@ -33,24 +46,26 @@ gconftool-2 --set --type=list --list-type=string \
 /apps/gedit-2/preferences/encodings/auto_detected  \
 "[UTF-8,GB2312,GBK,GB18030,CURRENT,ISO-8859-15,UTF-16]"
 
-killall ibus-daemon; ibus-daemon -d
-
+#package
 sudo vi /etc/apt/sources.list
 deb http://archive.canonical.com/ubuntu precise partner
 deb-src http://archive.canonical.com/ubuntu precise partner
 
-sudo apt-get install linux-headers-generic-lts-trusty linux-image-generic-lts-trusty
-
+#pdf reader
 sudo apt-get install ia32-libs
 tar xvf AdbeRdr9.5.1-1_i486linux_enu.tar.bz2
 sudo AdobeReader/INSTALL
 
+#video player
 sudo apt-get install gstreamer0.10-ffmpeg gstreamer0.10-plugins-bad gstreamer0.10-plugins-ugly
 
+#flash plugin
 sudo apt-get install flashplugin-installer
 
+#scm
 sudo apt-get install git-core git-gui git-doc subversion subversion-tools
 
+#ssh
 sudo apt-get install ssh openssh-server
 
 sudo vi /etc/ssh/sshd_config
@@ -70,9 +85,9 @@ tail -f /var/log/auth.log
 sudo apt-get install rsync grsync
 rsync --delete -azv --exclude '.git' /some/path/ /some/other/path/
 rsync --delete -vrltgoD -e ssh /some/path/ <user>@<host>:/some/path
- 
-sudo apt-get install x11vnc
-x11vnc -safer -nopw -forever -display :0
+
+sudo apt-get install colordiff
+diff file1 file2 | colordiff
 
 tar czvf foo.tar.gz foo/
 tar xzvf foo.tar.gz
@@ -108,6 +123,10 @@ find ~/tutorial |xargs grep -i 'keyword' -sl
 find ~/tutorial |xargs grep -C1 -i 'keyword'
 
 sudo apt-get install chkconfig
+
+#remote control 
+sudo apt-get install x11vnc
+x11vnc -safer -nopw -forever -display :0
 
 netstat -lnp | grep :80
 lsof -i tcp:80
