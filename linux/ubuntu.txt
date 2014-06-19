@@ -48,8 +48,8 @@ gconftool-2 --set --type=list --list-type=string \
 
 #package
 sudo vi /etc/apt/sources.list
-deb http://archive.canonical.com/ubuntu precise partner
-deb-src http://archive.canonical.com/ubuntu precise partner
+deb http://archive.canonical.com/ubuntu trusty partner
+deb-src http://archive.canonical.com/ubuntu trusty partner
 
 #pdf reader
 sudo apt-get install ia32-libs
@@ -123,6 +123,7 @@ find ~/tutorial |xargs grep -i 'keyword' -sl
 find ~/tutorial |xargs grep -C1 -i 'keyword'
 
 sudo apt-get install chkconfig
+chkconfig --list | grep -i mysql
 
 #remote control 
 sudo apt-get install x11vnc
