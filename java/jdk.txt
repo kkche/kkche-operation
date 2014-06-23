@@ -62,4 +62,3 @@ sudo update-alternatives --remove javap /usr/lib/jvm/default-java/bin/javap
 sudo update-alternatives --remove javaws /usr/lib/jvm/default-java/bin/javaws
 sudo update-alternatives --remove javap /usr/lib/jvm/default-java/bin/jar
 sudo update-alternatives --remove javaws /usr/lib/jvm/default-java/bin/jps
-

@@ -1,9 +1,9 @@
 
-tar xfz zookeeper-3.4.5.tar.gz
-mv zookeeper-3.4.5 ~/software
+tar xfz zookeeper-3.4.6.tar.gz
+mv zookeeper-3.4.6 ~/software
 
 vi ~/.bash_profile
-export ZOOKEEPER_HOME=$HOME/software/zookeeper-3.4.5
+export ZOOKEEPER_HOME=$HOME/software/zookeeper-3.4.6
 export PATH=$ZOOKEEPER_HOME/bin:$PATH
 
 vi ~/.bashrc
@@ -33,3 +33,9 @@ $ZOOKEEPER_HOME/bin/zkCli.sh -server <zk-server-host>:2181
 
 echo stat |nc <zk-server-host> 2181
 
+# clusters
+vi $ZOOKEEPER_HOME/conf/zoo.cfg
+server.<id>=<host>:<port>:<port>
+
+sudo bash -c 'echo "<id>" > /data/zookeeper/myid'
+$ZOOKEEPER_HOME/bin/zkServer.sh start
