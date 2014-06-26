@@ -11,7 +11,7 @@ sudo service logstash start
 http://localhost:9200/_search?pretty=1&q=*
 http://localhost:9292/
 
-sudo vi conf/apache-elasticsearch.conf
+sudo vi etc/logstash/conf.d/apache-elasticsearch.conf
 input {
   file {
     type => "apache"
@@ -34,7 +34,7 @@ output {
   }
 }
 
-sudo vi conf/shipper.conf
+sudo vi etc/logstash/conf.d/shipper.conf
 input {
   stdin {
     type => "example"
@@ -51,7 +51,7 @@ output {
   }
 }
 
-sudo vi conf/indexer.conf
+sudo vi etc/logstash/conf.d/indexer.conf
 input {
   redis {
     host => "<redis-host>"
@@ -70,7 +70,7 @@ output {
   }
 }
 
-sudo vi conf/apache-metrics.conf
+sudo vi etc/logstash/conf.d/apache-metrics.conf
 input {
   file {
     path => "/var/log/apache2/access.log"
@@ -90,9 +90,9 @@ output {
   }
 }
 
-sudo vi conf/rabbitmq.conf
+sudo vi etc/logstash/conf.d/rabbitmq.conf
 input {
-      rabbitmq {
+    rabbitmq {
         user => "xp"
         password => "xp"
         host => "0.0.0.0"
@@ -100,19 +100,19 @@ input {
         vhost => "hostlogs"
       }
     }
-    filter {
-      grok {
+filter {
+    grok {
                pattern => "\[%{LOGLEVEL:play_loglevel}\]\[%{TIMESTAMP_ISO8601:logdate}\] from \[%{GREEDYDATA:logger}\] \[%{GREEDYDATA:play_msg}\]"
                add_tag => [ "Grokked" ]
        }
-      date {
+    date {
                match => [ "logdate", "YYYY-MM-dd HH:mm:ss,SSS"]
                add_tag => [ "dateMatched" ]
        }
      }
 output {
   file {
-    path => "/home/ubuntu/logstash/x.txt"
+    path => "/home/ubuntu/log/logstash/%{type}/%{+YYYY-MM-dd}/%{type}.txt"
     }
 
   elasticsearch {
