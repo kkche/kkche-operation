@@ -1,10 +1,12 @@
 
-sudo mkdir -p /opt/logstash-1.2.2/conf
-sudo chown -R `whoami`:root /opt/logstash-1.2.2
-cd /opt/logstash-1.2.2
-sudo wget http://192.168.88.100/programming/operation/logstash/release/logstash-1.2.2-flatjar.jar
+wget -q -O - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | sudo apt-key add -
 
-java -jar logstash-1.2.2-flatjar.jar agent -f conf/some.conf -- web
+echo 'deb http://packages.elasticsearch.org/logstash/1.4/debian stable main' | \
+sudo tee /etc/apt/sources.list.d/logstash.list
+
+sudo apt-get update && sudo apt-get install logstash
+
+sudo service logstash start
 
 http://localhost:9200/_search?pretty=1&q=*
 http://localhost:9292/
@@ -39,12 +41,12 @@ input {
   }
 }
 output {
-  stdout { 
-    codec => rubydebug 
+  stdout {
+    codec => rubydebug
   }
-  redis { 
-    host => "<redis-host>" 
-    data_type => "list" 
+  redis {
+    host => "<redis-host>"
+    data_type => "list"
     key => "logstash"
   }
 }
@@ -59,7 +61,7 @@ input {
   }
 }
 output {
-  stdout { 
+  stdout {
     debug => true
     debug_format => "json"
   }
@@ -70,15 +72,15 @@ output {
 
 sudo vi conf/apache-metrics.conf
 input {
-  file { 
-    path => "/var/log/apache2/access.log" 
+  file {
+    path => "/var/log/apache2/access.log"
     type => "apache-access"
   }
 }
 filter {
-  grok { 
+  grok {
     type => "apache-access"
-    pattern => "%{COMBINEDAPACHELOG}" 
+    pattern => "%{COMBINEDAPACHELOG}"
   }
 }
 output {
@@ -88,3 +90,32 @@ output {
   }
 }
 
+sudo vi conf/rabbitmq.conf
+input {
+      rabbitmq {
+        user => "xp"
+        password => "xp"
+        host => "0.0.0.0"
+        queue => "go"
+        vhost => "hostlogs"
+      }
+    }
+    filter {
+      grok {
+               pattern => "\[%{LOGLEVEL:play_loglevel}\]\[%{TIMESTAMP_ISO8601:logdate}\] from \[%{GREEDYDATA:logger}\] \[%{GREEDYDATA:play_msg}\]"
+               add_tag => [ "Grokked" ]
+       }
+      date {
+               match => [ "logdate", "YYYY-MM-dd HH:mm:ss,SSS"]
+               add_tag => [ "dateMatched" ]
+       }
+     }
+output {
+  file {
+    path => "/home/ubuntu/logstash/x.txt"
+    }
+
+  elasticsearch {
+ 		host => localhost
+	}
+}

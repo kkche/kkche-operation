@@ -10,6 +10,7 @@ sudo rabbitmqctl status
 sudo rabbitmqctl help
 
 sudo rabbitmqctl add_user <username> <password>
+sudo rabbitmqctl delete_user guest
 sudo rabbitmqctl set_user_tags <username> administrator
 sudo rabbitmqctl list_users
 
@@ -46,4 +47,3 @@ require "rubygems"
 require "eventmachine"
 gem "amqp","0.9.8"
 require "amqp"
-
