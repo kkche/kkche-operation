@@ -6,11 +6,22 @@ sudo tee /etc/apt/sources.list.d/logstash.list
 
 sudo apt-get update && sudo apt-get install logstash
 
+# logstash
+sudo -u logstash /opt/logstash/bin/logstash -e \
+ 'input {  stdin { } output { elasticsearch { host => localhost } }'
+
+sudo -u logstash /opt/logstash/bin/logstash -e \
+  'input { file { path => "var/log/*.log" start_position => beginning }}
+   filter { grok { match => { "message" => "%{COMBINEDAPACHELOG}" } add_tag => [ "Grokked" ]  }}
+   output { elasticsearch {} stdout{} }'
+
+# service
 sudo service logstash start
 
 http://localhost:9200/_search?pretty=1&q=*
 http://localhost:9292/
 
+# etc/logstash/conf.d/*.conf
 sudo vi etc/logstash/conf.d/apache-elasticsearch.conf
 input {
   file {
@@ -93,11 +104,12 @@ output {
 sudo vi etc/logstash/conf.d/rabbitmq.conf
 input {
     rabbitmq {
-        user => "xp"
-        password => "xp"
-        host => "0.0.0.0"
-        queue => "go"
-        vhost => "hostlogs"
+        user => "<username>"
+        password => "<passwork>"
+        host => "<hostname>"
+        queue => "<queue>"
+        #exchange => "<exchange>"
+        vhost => "<vhostname>"
       }
     }
 filter {

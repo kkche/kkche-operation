@@ -8,8 +8,14 @@ sudo apt-get update && sudo apt-get install elasticsearch
 
 sudo service elasticsearch start
 
+#plugin
+cd /usr/share/elasticsearch/bin
+sudo ./plugin -i elasticsearch/marvel/latest
+
+http://<es-host>:9200
 http://<es-host>:9200/_status?pretty=true
 http://<es-host>:9200/_stats?pretty=true
 http://<es-host>:9200/_mapping?pretty=true
 http://<es-host>:9200/_search?pretty=true&size=100&&q=*
 
+http://<es-host>:9200/_plugin/marvel
