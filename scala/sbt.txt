@@ -27,7 +27,7 @@ vi ~/.sbt/repositories
   ivy-proxy-releases: http://localhost:8081/nexus/content/groups/public/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]
   maven-proxy-releases: http://localhost:8081/nexus/content/groups/public/
 
-# vi ~/.sbt/0.13/plugins/plugins.sbt
+vi ~/.sbt/0.13/plugins/plugins.sbt
 addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.5.0")
 
 sudo $SBT_HOME/bin/sbt
@@ -35,3 +35,4 @@ sudo ls -al /root/.sbt/boot/
 sudo ls -al /root/.ivy2/cache/
 
 sbt eclipse
+

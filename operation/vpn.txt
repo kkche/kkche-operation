@@ -44,7 +44,7 @@ sudo vi /etc/ppp/chap-secrets
 <username> pptp <password> *
 
 sudo vi /etc/ppp/peers/<vpn_name>
-pty "pptp <vpn_server_ip> --nolaunchpppd"
+pty "pptp <vpn_server_host> --nolaunchpppd"
 name <username>
 remotename pptp
 require-mppe-128
@@ -55,11 +55,14 @@ sudo vi /etc/ppp/ip-up.d/<vpn_name>
 #!/bin/sh
 route add -net 192.168.200.0 netmask 255.255.255.0 dev ppp0
 
+sudo sh -c 'cat vpn_route.txt >> /etc/ppp/ip-up.d/<vpn_name>'
+
 sudo chmod a+x /etc/ppp/ip-up.d/<vpn_name>
 
 sudo pon <vpn_name>
 
 ifconfig
+
 route -n
 
 sudo poff <vpn_name>

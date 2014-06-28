@@ -24,3 +24,4 @@ nohup mvn jetty:run &
 mvn javadoc:jar source:jar deploy
 mvn release:prepare
 mvn release:perform
+
