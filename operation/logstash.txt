@@ -113,15 +113,19 @@ input {
       }
     }
 filter {
-    grok {
-               pattern => "\[%{LOGLEVEL:play_loglevel}\]\[%{TIMESTAMP_ISO8601:logdate}\] from \[%{GREEDYDATA:logger}\] \[%{GREEDYDATA:play_msg}\]"
-               add_tag => [ "Grokked" ]
+  grok {
+    pattern => "\[%{LOGLEVEL:play_loglevel}\]\[%{TIMESTAMP_ISO8601:logdate}\] from \[%{GREEDYDATA:logger}\] \[%{GREEDYDATA:play_msg}\]"
+    add_tag => [ "Grokked" ]
        }
-    date {
-               match => [ "logdate", "YYYY-MM-dd HH:mm:ss,SSS"]
-               add_tag => [ "dateMatched" ]
+  json{
+    source => "play_msg"
+    add_tag => [ "isJson" ]
+      }
+  date {
+    match => [ "logdate", "YYYY-MM-dd HH:mm:ss,SSS"]
+    add_tag => [ "dateMatched" ]
        }
-     }
+    }
 output {
   file {
     path => "/home/ubuntu/log/logstash/%{type}/%{+YYYY-MM-dd}/%{type}.txt"
