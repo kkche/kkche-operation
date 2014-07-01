@@ -1,0 +1,21 @@
+
+# JDBC plugin for Elasticsearch
+https://github.com/jprante/elasticsearch-river-jdbc
+# MongoDB River Plugin for ElasticSearch
+https://github.com/richardwilly98/elasticsearch-river-mongodb
+
+# shell-centric crossplatform MongoDB management tool
+https://github.com/paralect/robomongo
+
+# lily
+https://github.com/NGDATA/lilyproject
+
+# Malhar
+https://github.com/DataTorrent/Malhar
+
+# scala-soap
+https://github.com/giabao/scala-soap
+
+# flume-ng
+https://github.com/leonlee/flume-ng-mongodb-sink
+https://github.com/kenshoo/flume-rabbitmq-sink
