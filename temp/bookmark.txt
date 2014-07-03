@@ -1,8 +1,9 @@
 
-# JDBC plugin for Elasticsearch
+# Elasticsearch River
 https://github.com/jprante/elasticsearch-river-jdbc
-# MongoDB River Plugin for ElasticSearch
 https://github.com/richardwilly98/elasticsearch-river-mongodb
+https://github.com/elasticsearch/elasticsearch-river-couchdb
+https://github.com/mallocator/Elasticsearch-MySQL-River
 
 # shell-centric crossplatform MongoDB management tool
 https://github.com/paralect/robomongo

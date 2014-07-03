@@ -37,3 +37,6 @@ mongo
 > db.fs.files.find({_id:ObjectId("<oid>")})
 > db.fs.chunks.find({files_id:ObjectId("<oid>")})
 
+
+# Convert a Standalone to a Replica Set
+mongod --port <port> --dbpath <dbpath> --replSet <rsname>
