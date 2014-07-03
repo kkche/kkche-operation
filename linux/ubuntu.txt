@@ -57,7 +57,7 @@ tar xvf AdbeRdr9.5.1-1_i486linux_enu.tar.bz2
 sudo AdobeReader/INSTALL
 
 #video player
-sudo apt-get install gstreamer0.10-ffmpeg gstreamer0.10-plugins-bad gstreamer0.10-plugins-ugly
+sudo apt-get install gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly
 
 #flash plugin
 sudo apt-get install flashplugin-installer
