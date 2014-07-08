@@ -8,6 +8,9 @@ sudo apt-get update && sudo apt-get install mongodb-org
 
 sudo vi /etc/mongodb.conf
 auth = true
+port = 27017
+bind_ip = 127.0.0.1
+replSet=<replSet name>
 
 sudo service mongodb restart
 
@@ -31,6 +34,7 @@ mongo
 > show collections
 > db.<collection_name>.drop()
 > db.<collection_name>.find().limit(5)
+> db.<collection_name>.update({_id:ObjectId("<oid>"), { }...})
 > db.<collection_name>.remove({ })
 > db.fs.chunks.count()
 > db.fs.chunks.findOne()

@@ -21,11 +21,17 @@ http://<es-host>:9200/_cat/indices?v
 cd /usr/share/elasticsearch/bin
 sudo ./plugin --install mobz/elasticsearch-head
 sudo ./plugin --install lukas-vlcek/bigdesk
+sudo ./plugin -install elasticsearch/elasticsearch-analysis-smartcn/2.2.0
 sudo ./plugin -i elasticsearch/marvel/latest
 
 http://localhost:9201/_plugin/head/
 http://localhost:9201/_plugin/bigdesk/
 http://localhost:9200/_plugin/marvel
+
+# cluster config
+sudo vim /etc/elasticsearch/elasticsearch.yml
+cluster.name: <cluster name>
+node.name: <node name>
 
 # API
 # http://<Node>:<Port>/<Index>/<Type>/<ID>
@@ -52,6 +58,13 @@ curl 'localhost:9200/_mget' -d '{
         }
     ]
 }'
+# update
+curl -XPOST 'localhost:9200/test/type1/1/_update' -d '{
+    "script" : "ctx._source.counter += count",
+    "params" : {
+        "count" : 4
+    }
+}'
 # search
 http://<es-host>:9200/_search?pretty=true&size=100&&q=*
 # curl -XGET 'http://localhost:9200/_search?pretty=true&q=yuki'
@@ -70,7 +83,8 @@ curl -XGET 'http://localhost:9200/twitter/tweet/_search?routing=kimchy' -d '{
     }
 }'
 
-# mongodb river 2.0.1-SNAPSHOT (mongodb 2.6.3 elasticsearch 1.2.1)
+
+# mongodb river 2.0.1-SNAPSHOT setup (mongodb 2.6.3 elasticsearch 1.2.1)
 # mongodb must be config as a Replica Set
 
 # compile
@@ -90,7 +104,7 @@ sudo ./bin/plugin -install elasticsearch/elasticsearch-analysis-stempel/2.2.0
 #sudo ./bin/plugin --install com.github.richardwilly98.elasticsearch/elasticsearch-river-mongodb/2.0.1
 sudo service elasticsearch restart
 
-curl -XPUT "localhost:9201/_river/worldcupriver/_meta" -d'
+curl -XPUT "localhost:9201/_river/<river name>/_meta" -d'
 {
   "type": "mongodb",
   "mongodb": {
