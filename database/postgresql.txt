@@ -1,5 +1,5 @@
 
-sudo apt-get install postgresql postgresql-client pgadmin3 postgresql-contrib postgresql-server-dev-9.1
+sudo apt-get install postgresql postgresql-client pgadmin3 postgresql-contrib postgresql-server-dev-all
 
 sudo -u postgres -i
 $ createuser username -s -P
@@ -14,4 +14,4 @@ postgres=# \q
 
 psql -h localhost dbname username
 
-sudo vi /etc/postgresql/9.1/main/pg_hba.conf
+sudo vi /etc/postgresql/9.3/main/pg_hba.conf
