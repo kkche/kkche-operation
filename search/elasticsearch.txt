@@ -48,6 +48,16 @@ curl -XPUT 'http://localhost:9200/twitter/tweet/1' -d '{
 }'
 # GET
 curl -XGET 'http://localhost:9200/twitter/tweet/1'
+
+# Setting
+curl -XPOST 'http://localhost:9200/twitter/_settings' -d'{
+  "index":{
+    "number_of_replicas":"2",
+    "number_of_shards":"3"
+  }
+}
+'
+# Count
 curl -XGET 'http://localhost:9200/twitter/tweet/_count'
 # Multi GET
 curl 'localhost:9200/_mget' -d '{
@@ -265,24 +275,27 @@ curl -XPOST http://localhost:9200/kanche/vehicle_spec_brief/_mapping -d'
           },
           "ik": {
             "type": "string",
-            "indexAnalyzer": "ik",
-            "searchAnalyzer": "ik"
+            "analyzer": "ik",
+            "copy_to": "search_me"
           },
           "pinyin": {
             "type": "string",
-            "indexAnalyzer": "pinyin",
-            "searchAnalyzer": "pinyin"
-          },
-          "short_pinyin": {
-            "type": "string",
             "store": "no",
+            "copy_to": "search_me",
             "term_vector": "with_positions_offsets",
             "analyzer": "pinyin_analyzer",
-            "boost": 1.0
+            "boost": 1
           },
           "origin": {
             "type": "string",
-            "store": "no",
+            "store": "yes",
+            "analyzer": "keyword"
+          },
+          "brand_suggest": {
+            "type": "completion"
+          },
+          "search_me": {
+            "type": "string",
             "analyzer": "keyword"
           }
         }
@@ -291,3 +304,15 @@ curl -XPOST http://localhost:9200/kanche/vehicle_spec_brief/_mapping -d'
   }
 }
 '
+
+curl -XGET 'http://192.168.1.171:9200/kanche/_search?q=%E4%B8%B0%E7%94%B0&from=0&size=30&pretty&sort=year_group:desc'
+
+curl -XPOST localhost:9200/kanche/_suggest -d '
+{
+  "vehicle_spec_brief" : {
+    "text" : "北",
+    "completion" : {
+      "field" : "brand.brand_suggest"
+    }
+  }
+}'
