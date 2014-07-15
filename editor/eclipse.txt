@@ -1,4 +1,7 @@
 
+Preferences -> Java -> Editor -> Content Assist
+Auto activation triggers for Java: .abcdefghijklmnopqrstuvwxyz
+
 vi eclipse.ini
 -Xms1024m
 -Xmx4096m
@@ -19,8 +22,7 @@ Spring Tool Suite
 Thymeleaf (http://www.thymeleaf.org/eclipse-plugin-update-site/)
 Grep Console
 ResourceBundle Editor
-RunJettyRun (http://run-jetty-run.googlecode.com/svn/trunk/updatesite-nightly)
-Eclipse Jetty (http://eclipse-jetty.sourceforge.net/update/)
+Eclipse Jetty
 FindBugs
 PMD (http://sourceforge.net/projects/pmd/files/pmd-eclipse/update-site/)
 EclEmma

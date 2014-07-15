@@ -56,10 +56,9 @@ sudo apt-get install ia32-libs
 tar xvf AdbeRdr9.5.1-1_i486linux_enu.tar.bz2
 sudo AdobeReader/INSTALL
 
-#video player
+#multimedia player
 sudo apt-get install gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly
-
-#flash plugin
+sudo apt-get install vlc
 sudo apt-get install flashplugin-installer
 
 #scm
