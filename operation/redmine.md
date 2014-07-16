@@ -5,11 +5,14 @@ tar xfzv redmine-2.5.0.tar.gz
 mv /tmp/redmine-2.5.0 ~/software
 cd ~/software/redmine-2.5.0
 
-mysql 
+mysql
+
+```
 > create database redmine character set utf8;
 > create user 'redmine'@'localhost' identified by '<password>';
 > grant all privileges on redmine.* to 'redmine'@'localhost';
 > flush privileges;
+```
 
 cp config/database.yml.example config/database.yml
 vi config/database.yml
