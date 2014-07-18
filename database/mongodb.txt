@@ -12,7 +12,7 @@ port = 27017
 bind_ip = 127.0.0.1
 replSet=<replSet name>
 
-sudo service mongodb restart
+sudo service mongod restart
 
 netstat -tln
 sudo lsof -i:27017
@@ -40,6 +40,12 @@ mongo
 > db.fs.chunks.findOne()
 > db.fs.files.find({_id:ObjectId("<oid>")})
 > db.fs.chunks.find({files_id:ObjectId("<oid>")})
+
+
+# backup and migration
+sudo service mongod stop
+sudo mongodump --dbpath /var/lib/mongodb --out /var/lib/mongodb.backup
+mongorestore /var/lib/mongodb.backup
 
 # Replica Set
 mongo

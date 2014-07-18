@@ -15,6 +15,12 @@ port = 27017
 bind_ip = 127.0.0.1
 replSet=<replSet name>
 
+
+# backup and migration
+sudo service tokumx stop
+sudo mongodump --dbpath /var/lib/mongodb --out /var/lib/mongodb.backup
+mongorestore /var/lib/mongodb.backup
+
 # Replica Set
 mongo
 > rs.initiate()
