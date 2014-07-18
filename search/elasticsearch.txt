@@ -37,6 +37,9 @@ index.number_of_shards: 3
 index.number_of_replicas: 1
 # bootstrap.mlockall: true
 
+# log
+tail -f /var/log/elasticsearch/elasticsearch.log
+
 # API
 # http://<Node>:<Port>/<Index>/<Type>/<ID>
 
@@ -59,6 +62,7 @@ curl -XPOST 'http://localhost:9200/twitter/_settings' -d'{
 '
 # Count
 curl -XGET 'http://localhost:9200/twitter/tweet/_count'
+
 # Multi GET
 curl 'localhost:9200/_mget' -d '{
     "docs" : [
@@ -111,7 +115,7 @@ curl -XGET 'http://127.0.0.1:9200/<index name>/_suggest' -d ' {
 }'
 
 
-# mongodb river 2.0.1-SNAPSHOT setup (mongodb 2.6.3 elasticsearch 1.2.1)
+# mongodb river 2.0.1-SNAPSHOT setup (elasticsearch 1.2.1)
 # mongodb must be config as a Replica Set
 
 # compile
@@ -233,6 +237,29 @@ sudo mkdir /usr/share/elasticsearch/plugins/analysis-pinyin
 sudo cp target/releases/elasticsearch-analysis-pinyin-1.2.x.zip /usr/share/elasticsearch/plugins/analysis-pinyin/
 sudo unzip /usr/share/elasticsearch/plugins/analysis-pinyin/elasticsearch-analysis-pinyin-1.2.x.zip && \
 sudo rm /usr/share/elasticsearch/plugins/analysis-pinyin/elasticsearch-analysis-pinyin-1.2.x.zip
+
+# config
+sudo vim /etc/elasticsearch/elasticsearch.yml
+index:
+  analysis:
+    analyzer:
+      ik:
+          alias: [ik_analyzer]
+          type: org.elasticsearch.index.analysis.IkAnalyzerProvider
+      ik_max_word:
+          type: ik
+          use_smart: false
+      ik_smart:
+          type: ik
+          use_smart: true
+      pinyin_analyzer:
+          tokenizer: my_pinyin
+          filter: [standard,nGram]
+    tokenizer:
+      my_pinyin:
+          type: pinyin
+          first_letter: prefix
+          padding_char: " "
 
 curl -XPUT http://localhost:9200/kanche/ -d'
 {
