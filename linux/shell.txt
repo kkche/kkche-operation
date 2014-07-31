@@ -99,3 +99,5 @@ sudo sed -i "s/\(GRUB_CMDLINE_LINUX=\)\"\"/\1\"acpi_osi=Linux acpi_backlight=ven
 
 sed -i 's/^\(\s*\)API:.*$/\1API: '\''http:\/\/'"$API_HOST"':9000'\''/' app/scripts/shared/Constant.coffee
 
+sudo find /usr/local -depth -iname 'git*' -exec rm -rf {} \;
+
