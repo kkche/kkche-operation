@@ -26,3 +26,4 @@ activator
 > ; <command>
 > ~ <command>
 > exit
+

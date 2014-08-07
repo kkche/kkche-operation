@@ -13,6 +13,9 @@ mysql -u root -h <hostname> -p
 > show databases;
 > select user();
 > select current_user();
+> use mysql;
+> select user,host from user;
+> delete from user where user = '<username>';
 > drop user '<username>'@'<hostname>';
 > create user '<username>'@'<hostname>' identified by '<password>';
 > drop database <db_name>;
