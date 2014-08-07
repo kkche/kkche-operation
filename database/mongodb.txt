@@ -51,9 +51,13 @@ mongo
 sudo service mongod stop
 sudo mongodump --dbpath /var/lib/mongodb --out /var/lib/mongodb.backup
 mongorestore /var/lib/mongodb.backup
+# mongorestore <dir> --host <replSetName>/<hostname1><:port>
 
 # Replica Set
 # at PRIMARY node
+
+# Add the fastsync=true option to /etc/tokumx.conf on all secondaries
+
 mongo <host>:<port>
 > rs.initiate()
 > rs.add('<host name>:<port>')
@@ -64,7 +68,7 @@ mongo <host>:<port>
 # Replica Set(n) + Config server(n) + Mongos(n) + Arbiter(1)
 sudo mkdir -p /data/mongo/{db,logs,configdb,configlog,mongoslog}
 sudo mkdir /etc/mongodb/
-sudo vim /etc/mongodb.conf
+
 # sudo vim /etc/mongodb/configSvr.conf
 # configsvr = true
 sudo mongod --fork --configsvr --port <config port> --dbpath /data/mongo/configdb --logpath /data/mongo/configlog
