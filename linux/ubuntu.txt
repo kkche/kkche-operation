@@ -88,9 +88,9 @@ wget -r -c -N -p -np -k http://example.com/
 ulimit -a
 
 sudo vi /etc/security/limits.conf
-* soft nofile 51200 
+* soft nofile 51200
 * hard nofile 51200
-root soft nofile 51200 
+root soft nofile 51200
 root hard nofile 51200
 
 sudo vi /etc/pam.d/su
@@ -130,7 +130,7 @@ find ~/tutorial |xargs grep -C1 -i 'keyword'
 sudo apt-get install chkconfig
 chkconfig --list | grep -i mysql
 
-#remote control 
+#remote control
 sudo apt-get install x11vnc
 x11vnc -safer -nopw -forever -display :0
 
@@ -144,7 +144,7 @@ sudo ethstatus -i eth0
 sudo apt-get install bwm-ng
 bwm-ng
 
-sudo apt-get install iftop 
+sudo apt-get install iftop
 sudo iftop
 
 sudo apt-get install iptraf
@@ -169,7 +169,7 @@ sudo iptables -A INPUT -p tcp --dport 80 -m connlimit --connlimit-above 50 --con
 sudo iptables -t filter -I INPUT -s 192.168.2.0/24 -p tcp --dport http -j DROP
 sudo iptables -t filter -I INPUT -s 192.168.1.23 -p tcp --dport ftp -j DROP
 
-sudo ./blockip.sh 123.1.2.3 
+sudo ./blockip.sh 123.1.2.3
 sudo ./allowip.sh 123.1.2.3
 
 vi blockip.sh
