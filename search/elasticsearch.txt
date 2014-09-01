@@ -4,6 +4,7 @@ wget -q -O - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | sudo apt-
 echo 'deb http://packages.elasticsearch.org/elasticsearch/1.2/debian stable main' | \
 sudo tee /etc/apt/sources.list.d/elasticsearch.list
 
+# sudo apt-get install elasticsearch=1.2.1
 sudo apt-get update && sudo apt-get install elasticsearch
 
 sudo service elasticsearch start
@@ -438,7 +439,7 @@ index:
 #        # is_num: true
 #        # is_quantifier: true
 #index.analysis.analyzer.default.type: mmseg
-index.analysis.analyzer.default.type: keyword
+#index.analysis.analyzer.default.type: keyword
 
 
 curl -XPUT http://localhost:9200/kanche/ -d'
