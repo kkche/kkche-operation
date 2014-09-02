@@ -12,8 +12,6 @@ redis-cli
 > type <key>
 > del <key>
 > flushall
-
 > hgetall <key>
-
 >llen <key>
 >lrange <key> 0 -1

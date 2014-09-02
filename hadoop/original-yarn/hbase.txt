@@ -1,9 +1,9 @@
 
-tar xfz hbase-0.96.1.1-hadoop2-bin.tar.gz
-mv hbase-0.96.1.1-hadoop2 ~/software
+tar xfz hbase-0.98.3-hadoop2-bin.tar.gz
+mv hbase-0.98.3-hadoop2 ~/software
 
 vi ~/.bash_profile
-export HBASE_HOME=$HOME/software/hbase-0.96.1.1-hadoop2
+export HBASE_HOME=$HOME/software/hbase-0.98.3-hadoop2
 export PATH=$HBASE_HOME/bin:$PATH
 
 source ~/.bash_profile
@@ -22,13 +22,17 @@ vi $HBASE_HOME/conf/hbase-site.xml
     <name>hbase.zookeeper.quorum</name>
     <value><host></value>
   </property>
+   <property>
+      <name>hbase.zookeeper.property.dataDir</name>
+      <value>/data/zookeeper</value>
+    </property>
   <property>
     <name>hbase.rest.port</name>
     <value>60050</value>
   </property>
 </configuration>
 
-vi $HADOOP_HOME/etc/hadoop/hdfs-site.xml  
+vi $HADOOP_HOME/etc/hadoop/hdfs-site.xml
 <configuration>
   <property>
     <name>dfs.support.append</name>
@@ -91,4 +95,3 @@ ps aux | grep hbase | awk '{print $2}' | xargs sudo kill -9
 
 http://stackoverflow.com/questions/11068418/get-filtered-rows-in-hbase
 https://blogs.apache.org/hbase/entry/coprocessor_introduction
-

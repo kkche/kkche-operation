@@ -1,14 +1,8 @@
 
 sudo add-apt-repository ppa:nginx/stable
-sudo apt-get update
-sudo apt-get install nginx
+sudo apt-get update && sudo apt-get install nginx
 
-gem install passenger
-
-sudo -s
-passenger-install-nginx-module
-
-sudo vi /opt/nginx/conf/nginx.conf
+sudo vi nginx.conf
 server {
 listen 90;
 server_name jishufan.com;
@@ -22,31 +16,4 @@ root /var/www;
 passenger_enabled on;
 passenger_base_uri /jishufan;
 }
-
-sudo /opt/nginx/sbin/nginx
-sudo /opt/nginx/sbin/nginx -s stop
-
-sudo apt-get install tcsh git-core scons g++ libpcre++-dev libboost-dev libreadline-dev
-
-cd ~/downloads
-wget http://nginx.org/download/nginx-1.0.11.tar.gz
-tar -xzf nginx-1.0.11.tar.gz
-
-git clone https://github.com/mdirolf/nginx-gridfs.git
-cd nginx-gridfs
-git checkout v0.8
-git submodule init
-git submodule update
-
-cd ~/downloads/nginx-1.0.11
-./configure --prefix=/opt/nginx/ --add-module=/home/user/downloads/nginx-gridfs
-make && sudo make install
-make clean
-
-sudo /opt/nginx/sbin/nginx
-
-cd /path/to/rails/project
-unicorn_rails -c config/unicorn.conf.rb
-
-ab -n 500 -c 100 http://localhost/uploads/4f45b16343f1e57a2e000002/foobar.zip
  

@@ -1,11 +1,11 @@
 
-tar xzf sbt-0.13.5-RC1.tgz
-sudo mv sbt /opt/sbt-0.13.5-RC1
-sudo chown -R root:root /opt/sbt-0.13.5-RC1/
-sudo chmod -R u+x /opt/sbt-0.13.5-RC1/bin/
+tar xzf sbt-0.13.5.tgz
+sudo mv sbt /opt/sbt-0.13.5
+sudo chown -R root:root /opt/sbt-0.13.5/
+sudo chmod -R u+x /opt/sbt-0.13.5/bin/
 
 sudo vi /etc/profile.d/scala.sh
-export SBT_HOME=/opt/sbt-0.13.5-RC1
+export SBT_HOME=/opt/sbt-0.13.5
 export PATH=$SBT_HOME/bin:$PATH
 
 source /etc/profile.d/scala.sh
@@ -19,20 +19,20 @@ http://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/
 http://oss.sonatype.org/content/repositories/releases
 http://oss.sonatype.org/content/repositories/snapshots
 
+mkdir -p ~/.sbt/0.13/plugins
+
 vi ~/.sbt/repositories
 [repositories]
   local
   ivy-proxy-releases: http://localhost:8081/nexus/content/groups/public/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]
   maven-proxy-releases: http://localhost:8081/nexus/content/groups/public/
 
-sudo $SBT_HOME/bin/sbt
-sudo ls -al /root/.sbt/boot/scala-2.10.3/org.scala-sbt/sbt/0.13.2
-sudo ls -al /root/.ivy2/cache
-
-mkdir -p ~/.sbt/0.13/plugins
-
 vi ~/.sbt/0.13/plugins/plugins.sbt
 addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.5.0")
+
+sudo $SBT_HOME/bin/sbt
+sudo ls -al /root/.sbt/boot/
+sudo ls -al /root/.ivy2/cache/
 
 sbt eclipse
 

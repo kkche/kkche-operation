@@ -10,6 +10,7 @@ sudo rabbitmqctl status
 sudo rabbitmqctl help
 
 sudo rabbitmqctl add_user <username> <password>
+sudo rabbitmqctl delete_user guest
 sudo rabbitmqctl set_user_tags <username> administrator
 sudo rabbitmqctl list_users
 
@@ -32,18 +33,4 @@ chmod u+x rabbitmqadmin
 ./rabbitmqadmin help subcommands
 ./rabbitmqadmin delete binding source=amq.fanout destination= destination_type=queue properties_key=
 sudo sh -c 'rabbitmqadmin --bash-completion > /etc/bash_completion.d/rabbitmqadmin'
-
-sudo gem install amqp
-
-sudo irb -rubygems
-> require "amqp"
-> AMQP::VERSION
-
-sudo apt-get install libamqp-ruby
-dpkg -L libamqp-ruby
-
-require "rubygems"
-require "eventmachine"
-gem "amqp","0.9.8"
-require "amqp"
 

@@ -4,7 +4,7 @@ sudo apt-get install imagemagick libmagickwand-dev libjmagick6-java
 sudo cp /usr/lib/jni/libJMagick.so $JAVA_HOME/jre/lib/amd64
 
 sudo vi /etc/profile.d/jmagick.sh
-export CLASSPATH=$CLASSPATH:/usr/share/java/jmagick6-6.2.6-0.jar
+export CLASSPATH=$CLASSPATH:/usr/share/java/jmagick6.jar
 export LD_LIBRARY_PATH=/usr/lib/jni/libJMagick.so
 
 source /etc/profile.d/jmagick.sh

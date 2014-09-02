@@ -1,4 +1,5 @@
 
+#brightness
 sudo vi /etc/rc.local
 echo 15 > /sys/class/backlight/acpi_video0/brightness
 echo 2907 > /sys/class/backlight/intel_backlight/brightness
@@ -7,8 +8,12 @@ exit 0
 cat /sys/class/backlight/acpi_video0/actual_brightness
 cat /sys/class/backlight/intel_backlight/actual_brightness
 
+#kernel
+sudo apt-get install linux-headers-generic-lts-trusty linux-image-generic-lts-trusty
+
+#language
 sudo apt-get install language-pack-zh-hans language-pack-zh-hans-base \
-fonts-arphic-uming ttf-arphic-ukai ttf-wqy-zenhei
+fonts-arphic-uming fonts-arphic-ukai fonts-wqy-zenhei
 
 sudo locale-gen en_US en_US.UTF-8
 sudo dpkg-reconfigure locales
@@ -16,11 +21,16 @@ sudo dpkg-reconfigure locales
 sudo vi /etc/default/locale
 LANG="en_US.UTF-8"
 
+#scrollbar
+sudo apt-get install dconf-tools
+#org -> gnome -> desktop -> interface -> ubuntu-overlay-scrollbars
+
+gsettings set com.canonical.desktop.interface scrollbar-mode normal
+
+#editor
 sudo apt-get install vim vim-scripts exuberant-ctags cscope
 sudo apt-get install vim-gnome vim-gtk
 sudo apt-get install unrar p7zip xchm fbreader
-
-gsettings set org.gnome.desktop.interface ubuntu-overlay-scrollbars false
 
 sudo apt-get install gconf-editor
 
@@ -28,27 +38,25 @@ gconftool-2 --set --type=list --list-type=string \
 /apps/gedit-2/preferences/encodings/auto_detected  \
 "[UTF-8,GB2312,GBK,GB18030,CURRENT,ISO-8859-15,UTF-16]"
 
-sudo add-apt-repository ppa:mitya57/retext-beta
-sudo apt-get update && sudo apt-get install retext
-
-killall ibus-daemon; ibus-daemon -d
-
+#package
 sudo vi /etc/apt/sources.list
-deb http://archive.canonical.com/ubuntu precise partner
-deb-src http://archive.canonical.com/ubuntu precise partner
+deb http://archive.canonical.com/ubuntu trusty partner
+deb-src http://archive.canonical.com/ubuntu trusty partner
 
-sudo apt-get install linux-headers-generic-lts-trusty linux-image-generic-lts-trusty
-
+#pdf reader
 sudo apt-get install ia32-libs
 tar xvf AdbeRdr9.5.1-1_i486linux_enu.tar.bz2
 sudo AdobeReader/INSTALL
 
-sudo apt-get install gstreamer0.10-ffmpeg gstreamer0.10-plugins-bad gstreamer0.10-plugins-ugly
-
+#multimedia player
+sudo apt-get install gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly
+sudo apt-get install vlc
 sudo apt-get install flashplugin-installer
 
+#scm
 sudo apt-get install git-core git-gui git-doc subversion subversion-tools
 
+#ssh
 sudo apt-get install ssh openssh-server
 
 sudo vi /etc/ssh/sshd_config
@@ -68,9 +76,9 @@ tail -f /var/log/auth.log
 sudo apt-get install rsync grsync
 rsync --delete -azv --exclude '.git' /some/path/ /some/other/path/
 rsync --delete -vrltgoD -e ssh /some/path/ <user>@<host>:/some/path
- 
-sudo apt-get install x11vnc
-x11vnc -safer -nopw -forever -display :0
+
+sudo apt-get install colordiff
+diff file1 file2 | colordiff
 
 tar czvf foo.tar.gz foo/
 tar xzvf foo.tar.gz
@@ -80,9 +88,9 @@ wget -r -c -N -p -np -k http://example.com/
 ulimit -a
 
 sudo vi /etc/security/limits.conf
-* soft nofile 51200 
+* soft nofile 51200
 * hard nofile 51200
-root soft nofile 51200 
+root soft nofile 51200
 root hard nofile 51200
 
 sudo vi /etc/pam.d/su
@@ -92,7 +100,21 @@ sudo apt-key list
 sudo apt-key del 98AB5139
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 16126D3A3E5C1192
 
+sudo adduser <username>
+sudo addgroup <groupname>
+sudo adduser <username> <groupname>
+sudo usermod -aG <groupname> <username>
+groups <username>
+
+sudo visudo
+root  ALL=(ALL:ALL) ALL
+%<groupname> ALL=(ALL) ALL
+<username> ALL=(ALL) ALL
+
 passwd <username>
+
+sudo deluser --remove-home <username>
+
 sudo vi /etc/hostname
 sudo vi /etc/hosts
 sudo sed -i "s/<host-1>/<host-2>/g" /etc/hostname
@@ -106,6 +128,11 @@ find ~/tutorial |xargs grep -i 'keyword' -sl
 find ~/tutorial |xargs grep -C1 -i 'keyword'
 
 sudo apt-get install chkconfig
+chkconfig --list | grep -i mysql
+
+#remote control
+sudo apt-get install x11vnc
+x11vnc -safer -nopw -forever -display :0
 
 netstat -lnp | grep :80
 lsof -i tcp:80
@@ -117,7 +144,7 @@ sudo ethstatus -i eth0
 sudo apt-get install bwm-ng
 bwm-ng
 
-sudo apt-get install iftop 
+sudo apt-get install iftop
 sudo iftop
 
 sudo apt-get install iptraf
@@ -142,7 +169,7 @@ sudo iptables -A INPUT -p tcp --dport 80 -m connlimit --connlimit-above 50 --con
 sudo iptables -t filter -I INPUT -s 192.168.2.0/24 -p tcp --dport http -j DROP
 sudo iptables -t filter -I INPUT -s 192.168.1.23 -p tcp --dport ftp -j DROP
 
-sudo ./blockip.sh 123.1.2.3 
+sudo ./blockip.sh 123.1.2.3
 sudo ./allowip.sh 123.1.2.3
 
 vi blockip.sh

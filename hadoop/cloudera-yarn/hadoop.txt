@@ -1,4 +1,12 @@
+#cloudera 5
 
+curl -s http://archive.cloudera.com/cdh5/ubuntu/precise/amd64/cdh/archive.key | sudo apt-key add -
+
+echo 'deb [arch=amd64] http://archive.cloudera.com/cdh5/ubuntu/precise/amd64/cdh precise-cdh5 contrib
+deb-src http://archive.cloudera.com/cdh5/ubuntu/precise/amd64/cdh precise-cdh5 contrib' | \
+sudo tee /etc/apt/sources.list.d/cloudera.list
+
+#cloudera 4
 sudo vi /etc/apt/sources.list.d/cloudera.list
 deb [arch=amd64] http://archive.cloudera.com/cdh4/ubuntu/precise/amd64/cdh precise-cdh4 contrib
 deb-src http://archive.cloudera.com/cdh4/ubuntu/precise/amd64/cdh precise-cdh4 contrib
@@ -22,10 +30,10 @@ sudo apt-get install hadoop-yarn-nodemanager hadoop-hdfs-datanode hadoop-mapredu
 #One host
 sudo apt-get install hadoop-mapreduce-historyserver hadoop-yarn-proxyserver
 
-#Client 
+#Client
 sudo apt-get install hadoop-client
 
-sudo apt-get purge xxx 
+sudo apt-get purge xxx
 
 sudo vi /etc/hostname
 
@@ -197,4 +205,3 @@ hadoop fs -ls output23
 hadoop fs -cat output23/part-r-00000 | head
 
 hadoop fs -rm -r output*
-
