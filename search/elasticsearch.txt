@@ -116,6 +116,20 @@ curl -XGET 'http://127.0.0.1:9200/<index name>/_suggest' -d ' {
 }'
 
 
+# backup
+curl -XPUT 'http://localhost:9200/_snapshot/my_backup' -d '{
+    "type": "fs",
+    "settings": {
+        "location": "/home/ubuntu/backup/elasticsearch/my_backup",
+        "compress": true
+    }
+}'
+
+sudo chown -R elasticsearch:elasticsearch elasticsearch
+curl -XPUT "localhost:9200/_snapshot/my_backup/snapshot_1?wait_for_completion=true"
+# restore
+curl -XPOST "localhost:9200/_snapshot/my_backup/snapshot_1/_restore"
+
 # mongodb river 2.0.1-SNAPSHOT setup (elasticsearch 1.2.1)
 # mongodb must be config as a Replica Set
 
