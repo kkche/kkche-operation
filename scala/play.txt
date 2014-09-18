@@ -1,9 +1,9 @@
 
-unzip play-2.3.0.zip
-mv play-2.3.0 ~/software/
+unzip play-2.3.4.zip
+mv play-2.3.4 ~/software/
 
 vi ~/.bash_profile
-export PLAY_HOME=$HOME/software/play-2.3.0
+export PLAY_HOME=$HOME/software/play-2.3.4
 export PATH=$PLAY_HOME:$PATH
 
 vi ~/.bashrc
