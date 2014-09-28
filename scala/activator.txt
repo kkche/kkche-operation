@@ -25,4 +25,5 @@ activator
 > dist
 > ; <command>
 > ~ <command>
+> ~ run <port>
 > exit

@@ -2,11 +2,20 @@
 Gilt Groupe Play Application Template
 https://github.com/gilt/activator-gilt-app
 
+Tricks and Tips With Type Classes in Scala
+https://github.com/dickwall/activator-typeclass-tips
+
 Play Framework, AngularJS, WebJars, and RequireJS Seed
 https://github.com/mariussoutier/play-angular-require-seed
 
+Skalholt Code Generator for Play Framework and Slick
+https://github.com/tech-sketch/skalholt
+
 Config, Guice, Akka and Spray
 https://github.com/ehalpern/sandbox
+
+Play Framework using Macwire for dependency injection
+https://github.com/sameergarg/macwire-di
 
 Akka and Spray
 https://github.com/eigengo/activator-akka-spray
@@ -29,17 +38,29 @@ https://github.com/typesafehub/activator-hello-scala-2_11
 Spray and Websocket interfaces to actors
 https://github.com/cuali/SprayEasterEggs
 
+Spray and Websocket interfaces to actors
+https://github.com/cuali/SprayEasterEggs
+
+Akka (Scala) Seed
+https://github.com/alias1/akka-scala-seed
+
 Play Slick quickstart
 https://github.com/loicdescotte/activator-play-slick
 
 Actor per-request model with spray
 https://github.com/NET-A-PORTER/spray-actor-per-request
 
+A basic Unfiltered project
+https://github.com/chrislewis/activator-unfiltered-basic-project
+
 Reactive Maps (Java 8)
 https://github.com/typesafehub/ReactiveMapsJava
 
 Hazelcast with Akka and Spray
 https://github.com/dvallejo/hazelcast-scala-example
+
+Reactive Salesforce REST Example
+https://github.com/developerforce/reactive-salesforce-rest-angular-crud
 
 Akka-camel / CXF / Weather web services integration
 https://github.com/JSantosP/akka-camel-cxf-weather
@@ -70,6 +91,9 @@ https://github.com/typesafehub/reactive-scales
 
 SBT runnable JMH benchmarks
 https://github.com/ktoso/sbt-jmh-seed-activator
+
+A basic Scala project
+https://github.com/chrislewis/activator-basic-project
 
 Tweetmap (Java 8)
 https://github.com/retroryan/activator-tweetmap-java8
@@ -104,17 +128,32 @@ https://github.com/mohiva/play-silhouette-seed
 SSE Chat Template with AngularJS (Java)
 https://github.com/markusjura/sse-chat-java
 
+Camel message processing using the Scala DSL
+https://github.com/hilton/activator-camel-http
+
 Just Play! Java
 https://github.com/julienrf/just-play-java
 
 Using a customized Slick code generator
 https://github.com/slick/slick-codegen-customization-example
 
+Google Glass Mirror API in Spray and Akka
+https://github.com/eigengo/activator-mirror
+
 HTML 5 Device Orientation with play, ember and websockets
 https://github.com/teroxik/reactive-orientation
 
+Salesforce Developer Workshop for Java
+https://github.com/developerforce/salesforce-developer-workshop-java
+
 6 Minute Apps!
 https://github.com/jamesward/six-minute-apps
+
+Monitoring Akka with Kamon and Statsd
+https://github.com/muuki88/activator-akka-kamon
+
+Simple Binary Encoding (SBE) with Scala
+https://github.com/jamie-allen/sbe-scala-example
 
 Atomic Scala Examples
 https://github.com/AtomicScala/atomic-scala-examples
@@ -143,6 +182,9 @@ https://github.com/angyjoe/eventual
 Play Slick Securesocial Bootstrap3 Reactive Quickstart
 https://github.com/raisercostin/securesocial-slick-bootstrap3-sample
 
+Akka Streams Workshop: Exercises & Examples
+https://github.com/retroryan/streams-workshop
+
 Spark Workshop
 https://github.com/deanwampler/spark-workshop
 
@@ -170,6 +212,9 @@ https://github.com/VirtusLab/activator-play-advanced-slick
 Akka Scala Guice
 https://github.com/rocketraman/activator-akka-scala-guice
 
+Computer Database Scala
+https://github.com/typesafehub/activator-computer-database-scala
+
 Akka IO over TCP, Spray and MySQL Reactive
 https://github.com/vngrs/tcp-async
 
@@ -181,6 +226,9 @@ https://github.com/jaceklaskowski/spark-activator
 
 Play Start Application
 https://github.com/yesnault/PlayStartApp
+
+Scala Library Seed
+https://github.com/jamesward/scala-library-seed
 
 Distributed workers with Akka and Java!
 https://github.com/typesafehub/activator-akka-distributed-workers-java
@@ -251,6 +299,9 @@ https://github.com/kaeawc/play-cake-pattern
 Play Example Form
 https://github.com/jamesward/play-example-form
 
+Play Slick AngularJS Bootstrap H2 Tests Example
+https://github.com/fosco-maestro/play-slick-angular-test-example
+
 CEP with Akka and Esper or Streams
 https://github.com/fsauer65/akka-esper-integration
 
@@ -260,6 +311,9 @@ https://github.com/mstahv/vaadin-in-akka
 Hello Scaladin!
 https://github.com/tepi/hello-scaladin
 
+Reactive Salesforce Seed with REST and JavaScript
+https://github.com/developerforce/reactive-salesforce-rest-javascript-seed
+
 Akka Scala Spring
 https://github.com/ouertani/akka-scala-spring
 
@@ -268,6 +322,9 @@ https://github.com/sne11ius/play-silhouette-slick-seed
 
 Scala Testing
 https://github.com/typesafehub/activator-scala-testing
+
+Reactive Turtle
+https://github.com/ktonga/reactive-turtle
 
 Template template
 https://github.com/schaloner/activator-template-template
@@ -281,14 +338,23 @@ https://github.com/fsauer65/akka-esper-integration
 Akka Clustered PubSub with Scala!
 https://github.com/typesafehub/activator-akka-clustering
 
+Akka cluster with Docker
+https://github.com/muuki88/activator-akka-docker
+
 Reactive App generated with EasyMda
 https://github.com/robinbakkerus/reactive-gen-easymda
+
+Computer Database Java
+https://github.com/typesafehub/activator-computer-database-java
 
 Hello Slick!
 https://github.com/typesafehub/activator-hello-slick
 
 Reactive Real-time Search
 https://github.com/DrewEaster/realtime-search
+
+Salesforce Canvas Seed
+https://github.com/developerforce/salesforce-canvas-seed
 
 Slick TestKit Example
 https://github.com/typesafehub/activator-slick-testkit-example
@@ -298,6 +364,9 @@ https://github.com/typesafehub/reactive-stocks
 
 WebJars Sample for Play 2.x
 https://github.com/webjars/sample-play2
+
+Slick Play AngularJS SecureSocial Seed
+https://github.com/spass/spass
 
 Slick with Android Example
 https://github.com/pulsation/slick-android-example
@@ -341,17 +410,32 @@ https://github.com/mkelland/activator-play-slick
 Slick TestKit Example (Slick 2.1)
 https://github.com/typesafehub/activator-slick-testkit-example
 
+Play 2.3 Multidomain Seed
+https://github.com/adrianhurt/play-multidomain-seed
+
+Play Framework with Slick back-end for JQuery UI Sortable
+https://github.com/hilton/activator-slick-sortable
+
 Hello Play Framework!
 https://github.com/typesafehub/activator-hello-play
 
 No-framework Dependency Injection with MacWire and Play Activator
 https://github.com/adamw/macwire-activator
 
+Play Framework Akka Cluster Frontend with AngularJS and RequireJS
+https://github.com/muuki88/activator-play-cluster-sample
+
 Scaldi Play Example
 https://github.com/scaldi/scaldi-play-example
 
 Slick Plain SQL Queries (Slick 2.1)
 https://github.com/typesafehub/activator-slick-plainsql
+
+Easy setup of sbt-managed projects on GitHub with Travis CI, coveralls and others
+https://github.com/jaceklaskowski/sbt-github-project-template
+
+Play Slick Backbone Todo List Example
+https://github.com/jmparsons/play-scala-backbone-todo
 
 A little phantom type sample
 https://github.com/dickwall/activator-scala-phantom
@@ -368,6 +452,9 @@ https://github.com/eigengo/activator-spray-twitter
 Play SQLite (Scala)
 https://github.com/kaeawc/play-sqlite
 
+ROCA example built with Play
+https://github.com/innoq/activator-play-roca
+
 Play Framework + HBase
 https://github.com/typesafehub/activator-play-hbase
 
@@ -379,6 +466,9 @@ https://github.com/julienrf/just-play-scala
 
 ReactiveMongo Play Autosource
 https://github.com/mandubian/activator-play-autosource-reactivemongo
+
+Anonymous Chat
+https://github.com/anhminh1981/anonymous_chat
 
 Play + Java + CRUD
 https://github.com/hakandilek/play2-crud-activator
