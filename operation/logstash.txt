@@ -15,6 +15,24 @@ sudo -u logstash /opt/logstash/bin/logstash -e \
    filter { grok { match => { "message" => "%{COMBINEDAPACHELOG}" } add_tag => [ "Grokked" ]  }}
    output { elasticsearch {} stdout{} }'
 
+sudo -u logstash /opt/logstash/bin/logstash -e \
+  'input { file { path => "/home/ubuntu/workspace/python/kanche-share/log/share_log.txt" start_position => beginning }}
+   filter {
+  grok {
+    pattern => "%{TIMESTAMP_ISO8601:logdate}\s\-\s%{GREEDYDATA:thread}\s\-\s%{LOGLEVEL:loglevel}\s\-\s%{GREEDYDATA:jsonmsg}"
+    add_tag => [ "Grokked" ]
+       }
+  json{
+    source => "jsonmsg"
+    add_tag => [ "isJson" ]
+      }
+  date {
+    match => [ "logdate", "YYYY-MM-dd HH:mm:ss,SSS"]
+    add_tag => [ "dateMatched" ]
+       }
+    }
+   output { elasticsearch_http { host => "localhost"} stdout{} }'
+
 # service
 sudo service logstash start
 
@@ -135,3 +153,6 @@ output {
  		host => localhost
 	}
 }
+
+# nginx
+https://raw.githubusercontent.com/elasticsearch/kibana/master/sample/nginx.conf
