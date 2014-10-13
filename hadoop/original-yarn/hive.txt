@@ -1,8 +1,8 @@
 
-tar xfz hive-0.11.0.tar.gz
-sudo mv hive-0.11.0 /opt
+tar xfz hive-0.13.1.tar.gz
+sudo mv hive-0.13.1 /opt
 
-cd /opt/hive-0.11.0/conf/
+cd /opt/hive-0.13.1/conf/
 sudo mv hive-default.xml.template hive-site.xml
 sudo mv hive-env.sh.template hive-env.sh
 sudo mv hive-exec-log4j.properties.template hive-exec-log4j.properties
@@ -43,13 +43,13 @@ sudo vi hive-site.xml
 </property>
 
 sudo vi /etc/profile.d/hive.sh
-export HIVE_HOME=/opt/hive-0.11.0
+export HIVE_HOME=/opt/hive-0.13.1
 export PATH=$HIVE_HOME/bin:$PATH
 
 sudo apt-get install mysql-client libmysql-java
 dpkg -L libmysql-java
 sudo cp /usr/share/java/mysql-connector-java-5.1.16.jar $HIVE_HOME/lib
-sudo chown -R `whoami`:root /opt/hive-0.11.0
+sudo chown -R `whoami`:root /opt/hive-0.13.1
 
 sudo vi /etc/mysql/my.cnf
 #bind-address = 127.0.0.1
@@ -62,13 +62,13 @@ mysql -u root -h <hostname> -p
 > drop database hive;
 > create database hive;
 > use hive;
-> source /opt/hive-0.11.0/scripts/metastore/upgrade/mysql/hive-schema-0.10.0.mysql.sql;
-> grant all privileges on hive.* to 'hive'@'<hostname>' identified by '<password>' with grant option;
+> source /opt/hive-0.13.1/scripts/metastore/upgrade/mysql/hive-schema-0.10.0.mysql.sql;
+> grant all privileges on hive.* to 'hive'@'<hostname>' with grant option;
 > flush privileges;
 
 $HADOOP_HOME/bin/hadoop fs -mkdir /tmp
 $HADOOP_HOME/bin/hadoop fs -chmod g+w /tmp
-$HADOOP_HOME/bin/hadoop fs -mkdir -P /user/hive/warehouse
+$HADOOP_HOME/bin/hadoop fs -mkdir /user/hive/warehouse
 $HADOOP_HOME/bin/hadoop fs -chmod g+w /user/hive/warehouse
 
 $HIVE_HOME/bin/hive

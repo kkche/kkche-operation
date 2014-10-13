@@ -538,3 +538,20 @@ curl -XPOST localhost:9200/kanche/_suggest -d '
     }
   }
 }'
+
+
+# JDBC plugin for Elasticsearch
+
+sudo ./plugin --install jdbc --url http://xbib.org/repository/org/xbib/elasticsearch/plugin/elasticsearch-river-jdbc/1.2.1.1/elasticsearch-river-jdbc-1.2.1.1-plugin.zip
+sudo apt-get install libmysql-java
+sudo cp /usr/share/java/mysql-connector-java-5.1.28.jar /usr/share/elasticsearch/plugins/jdbc/
+
+curl -XPUT 'localhost:9200/_river/my_jdbc_river/_meta' -d '{
+    "type" : "jdbc",
+    "jdbc" : {
+        "url" : "jdbc:mysql://localhost:3306/water",
+        "user" : "root",
+        "password" : "",
+        "sql" : "select * from base_vehisrc"
+    }
+}'
