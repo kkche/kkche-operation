@@ -42,3 +42,29 @@ export SPARK_JAR=hdfs://<namenode>:8020/user/$USER/spark/lib/spark-assembly-1.0.
 
 >spark-shell
 http://<hostname>:4040
+
+
+# # # # # # # # # # # # # # #
+# spark 1.1.0 Hadoop 2.5.1  #
+# # # # # # # # # # # # # # #
+
+#build spark 1.1.0 by maven
+#install scala 2.10.4 first
+# hive 0.13.1
+
+sudo apt-get install build-essential
+sudo apt-get install libtool cmake zlib1g-dev libssl-dev protobuf-compiler
+
+>./make-distribution.sh --tgz -Pyarn -Phadoop-2.4 -Dhadoop.version=2.5.1 -Phive
+
+>vim bash_profile
+export SPARK_HOME=$HOME/software/spark-1.1.0-bin-2.5.1
+export PATH=$SPARK_HOME/bin:$PATH
+export SPARK_JAR=hdfs://spark01.kanche.com:8020/user/$USER/spark/lib/spark-assembly-1.1.0-hadoop2.5.1.jar
+
+cp $HIVE_CONF_DIR/hive-site.xml $SPARK_HOME/conf/hive-site.xml
+
+spark-shell --master yarn-clusters
+
+$HIVE_HOME/bin/hive --service metastore
+spark-sql --master yarn-clusters

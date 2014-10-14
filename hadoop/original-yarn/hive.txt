@@ -14,6 +14,10 @@ sudo vi hive-site.xml
   <value><hostname></value>
 </property>
 <property>
+  <name>hive.metastore.uris</name>
+  <value>thrift://<hostname>:9083</value>
+</property>
+<property>
   <name>javax.jdo.option.ConnectionURL</name>
   <value>jdbc:mysql://<hostname>/hive</value>
 </property>
