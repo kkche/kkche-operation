@@ -85,7 +85,8 @@ $HIVE_HOME/bin/hive
 > drop table user;
 
 $HIVE_HOME/bin/hive --service metastore
-$HIVE_HOME/bin/hive --service hiveserver
+# $HIVE_HOME/bin/hive --service hiveserver
+$HIVE_HOME/bin/hiveserver2
 
 $HIVE_HOME/bin/hive --service hwi
 nohup $HIVE_HOME/bin/hive --service hwi > /dev/null 2> /dev/null &
