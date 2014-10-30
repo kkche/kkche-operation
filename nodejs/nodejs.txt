@@ -12,7 +12,7 @@ mkdir /tmp/npm/
 sudo npm ls -g
 npm info <package_name>
 
-sudo npm install -g bower grunt-cli yo coffee-script less
+sudo npm install -g bower grunt-cli yo coffee-script less phantomjs
 
 sudo npm update -g <package_name>
 
@@ -22,4 +22,3 @@ sudo gem install sass compass
 npm install
 bower install
 grunt <task_name>
-

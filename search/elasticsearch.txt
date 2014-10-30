@@ -555,3 +555,26 @@ curl -XPUT 'localhost:9200/_river/my_jdbc_river/_meta' -d '{
         "sql" : "select * from base_vehisrc"
     }
 }'
+
+
+
+# Elasticsearch-hadoop
+## elasticsearch-hive
+
+mv elasticsearch-hadoop-hive-2.0.2.jar ../../apache-hive-0.13.1-bin/lib/
+hadoop fs -put elasticsearch-hadoop-2.0.2/ lib
+
+sudo vi $HIVE_HOME/conf/hive-site.xml
+<property>
+  <name>hive.aux.jars.path</name>
+  <value>/HDFSpath/elasticsearch-hadoop.jar</value>
+  <description>A comma separated list (with no spaces) of the jar files</description>
+</property>
+
+hive
+>CREATE  EXTERNAL TABLE `src_es`(
+  `key` bigint,
+  `value` string)
+  STORED BY 'org.elasticsearch.hadoop.hive.EsStorageHandler'
+TBLPROPERTIES('es.resource' = 'test/src',
+  'es.mapping.names' = 'key:keys_name , value:value_name');
