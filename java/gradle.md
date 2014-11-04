@@ -1,4 +1,8 @@
 
+sudo add-apt-repository ppa:cwchien/gradle
+sudo apt-get update
+sudo apt-get install gradle
+
 gradle tasks
 gradle build
 gradle wrapper
@@ -25,4 +29,3 @@ repositories {
     mavenCentral()
 }
 ```
-
