@@ -33,6 +33,10 @@ vi $HADOOP_HOME/etc/hadoop/hdfs-site.xml
 vi $HADOOP_HOME/etc/hadoop/yarn-site.xml
 <configuration>
 	<property>
+		<name>yarn.resourcemanager.scheduler.class</name>
+		<value>org.apache.hadoop.yarn.server.resourcemanager.scheduler.capacity.CapacityScheduler</value>
+	</property>
+	<property>
 		<name>yarn.nodemanager.resource.memory-mb</name>
 		<value>10240</value>
 	</property>
@@ -68,11 +72,13 @@ vi $HADOOP_HOME/etc/hadoop/mapred-site.xml
 		<value>file:///data/hadoop/mr/local</value>
 		<final>true</final>
 	</property>
+	<property>
+    <name>yarn.scheduler.maximum-allocation-mb</name>
+    <value>20480</value>
+  </property>
 </configuration>
 
 vi $HADOOP_HOME/etc/hadoop/hadoop-env.sh
-
-export HADOOP_COMMON_LIB_NATIVE_DIR=${HADOOP_PREFIX}/lib/native
 export HADOOP_OPTS="-Djava.library.path=$HADOOP_PREFIX/lib"
 
 vi $HADOOP_HOME/etc/hadoop/slaves

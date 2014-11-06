@@ -27,17 +27,18 @@ SPARK_DRIVER_MEMORY=10G
 >vim spark-defaults.conf
 spark.master            yarn-clusters
 spark.eventLog.dir      hdfs://<namenode>:8020/<directory>
+spark.yarn.jar  hdfs://spark01.kanche.com:8020/user/ubuntu/spark/lib/spark-assembly-1.1.0-hadoop2.5.1.jar
 
 >vim $HOME/.bash_profile
 export SPARK_HOME=$HOME/software/spark-1.0.0-hadoop-2.4.0
 export PATH=$SPARK_HOME/bin:$PATH
-#export SPARK_JAR=$HOME/software/spark-1.0.0-hadoop-2.4.0/lib/spark-assembly-1.0.0-hadoop2.4.0.jar
-export SPARK_JAR=hdfs://<namenode>:8020/user/$USER/spark/lib/spark-assembly-1.0.0-hadoop2.4.0.jar
+# export SPARK_JAR=$HOME/software/spark-1.0.0-hadoop-2.4.0/lib/spark-assembly-1.0.0-hadoop2.4.0.jar
+# export SPARK_JAR=hdfs://<namenode>:8020/user/$USER/spark/lib/spark-assembly-1.0.0-hadoop2.4.0.jar
 >source $HOME/.bash_profile
 
 >$HADOOP_HOME/bin/hadoop fs -ls -R /
 >$HADOOP_HOME/bin/hadoop fs -mkdir -p /user/$USER/spark
->$HADOOP_HOME/bin/hadoop fs -put $SPARK_HOME/lib/spark-assembly-1.0.0-hadoop2.4.0.jar /user/$USER/spark/lib
+# >$HADOOP_HOME/bin/hadoop fs -put $SPARK_HOME/lib/spark-assembly-1.0.0-hadoop2.4.0.jar /user/$USER/spark/lib
 
 #spark on yarn
 >spark-submit --class org.apache.spark.examples.SparkPi \
