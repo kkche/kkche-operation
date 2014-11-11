@@ -78,6 +78,7 @@ $HADOOP_HOME/bin/hadoop fs -chmod g+w /tmp
 $HADOOP_HOME/bin/hadoop fs -mkdir /user/hive/warehouse
 $HADOOP_HOME/bin/hadoop fs -chmod g+w /user/hive/warehouse
 
+$HIVE_HOME/bin/hive --hiveconf mapreduce.job.queuename=queue1
 $HIVE_HOME/bin/hive
 > create table user (id string, username string);
 > show tables;

@@ -81,6 +81,22 @@ vi $HADOOP_HOME/etc/hadoop/mapred-site.xml
 vi $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 export HADOOP_OPTS="-Djava.library.path=$HADOOP_PREFIX/lib"
 
+vi $HADOOP_HOME/etc/hadoop/capacity-scheduler.xml
+	<property>
+	    <name>yarn.scheduler.capacity.root.queues</name>
+	    <value>default,spark</value>
+	</property>
+  <property>
+    <name>yarn.scheduler.capacity.root.default.capacity</name>
+    <value>50</value>
+    <description>Default queue target capacity.</description>
+  </property>
+  <property>
+    <name>yarn.scheduler.capacity.root.spark.capacity</name>
+    <value>50</value>
+    <description>Default queue target capacity.</description>
+  </property>
+
 vi $HADOOP_HOME/etc/hadoop/slaves
 <host>
 
@@ -104,3 +120,8 @@ jps
 
 http://<host>:50070/
 http://<host>:8088/
+
+#<property>
+#		<name>yarn.resourcemanager.hostname</name>
+#		<value><hostname></value>
+#	</property>
