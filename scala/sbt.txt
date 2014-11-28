@@ -19,6 +19,9 @@ http://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/
 https://oss.sonatype.org/content/repositories/releases
 https://oss.sonatype.org/content/repositories/snapshots
 
+"Akka Repository" at "http://repo.akka.io/releases/"
+"clojars.org" at "http://clojars.org/repo"
+
 mkdir -p ~/.sbt/0.13/plugins
 
 vi ~/.sbt/repositories
@@ -35,4 +38,3 @@ sudo ls -al /root/.sbt/boot/
 sudo ls -al /root/.ivy2/cache/
 
 sbt eclipse
-

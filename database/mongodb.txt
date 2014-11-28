@@ -50,6 +50,7 @@ mongo
 # backup and migration
 sudo service mongod stop
 sudo mongodump --dbpath /var/lib/mongodb --out /var/lib/mongodb.backup
+mongodump --collection share_job --db kanche --out ./share_job_dump
 mongorestore /var/lib/mongodb.backup
 # mongorestore <dir> --host <replSetName>/<hostname1><:port>
 
