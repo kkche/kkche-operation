@@ -1,6 +1,6 @@
 
 cd /tmp
-wget http://192.168.88.100/programming/operation/logstash/release/kibana-3.0.0milestone4.tar.gz
+wget https://download.elasticsearch.org/kibana/kibana/kibana-3.0.0milestone4.tar.gz
 tar xfz kibana-3.0.0milestone4.tar.gz
 sudo mv kibana-3.0.0milestone4 /opt
 sudo ln -s /opt/kibana-3.0.0milestone4 /var/www/kibana
